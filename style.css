@@ -168,27 +168,21 @@ footer {
    Mobile Phone Layout (New Template)
    ---------------- */
 @media screen and (max-width: 768px) {
-  /* Hide the desktop sidebar completely */
+  /* Hide the desktop sidebar */
   #sidebar {
     display: none !important;
   }
   
-  /* Remove the flex wrapper and use a block layout */
-  #wrapper {
-    display: block;
-    margin: 0;
-  }
-  
-  /* Mobile Topbar / Navbar */
+  /* Force display of the mobile topbar */
   #mobileNavbar {
     display: block !important;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 55px;  /* Set an accurate, fixed navbar height */
+    height: 55px; /* Adjust the height as needed */
     background-color: #333;
-    z-index: 10000; /* High z-index to ensure it appears on top */
+    z-index: 10000; /* High z-index so it stays on top */
   }
   
   #mobileNavbar nav {
@@ -196,48 +190,39 @@ footer {
   }
   
   #mobileNavbar nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
   }
   
   #mobileNavbar nav ul li {
     flex: 1;
     text-align: center;
-    cursor: pointer;
     color: #fff;
+    cursor: pointer;
     font-size: 20px;
   }
   
-  /* Optionally hide label text (or display it as needed) */
+  /* Optional: If you want the labels to appear, change display to inline-block */
   #mobileNavbar nav ul li .nav-label {
-    display: none;
+    display: none; /* Change this to inline-block if you prefer labels */
   }
   
-  /* Main content adjustment:
-     - Remove left margin
-     - Add top padding to make room for the fixed topbar */
+  /* Adjust main content so it appears below the fixed mobile topbar */
   #content {
     margin: 0;
-    padding: 70px 10px 10px 10px;  /* Top padding exceeds the 55px navbar for spacing */
+    padding-top: 70px; /* Ensure enough space below the topbar */
     width: 100%;
-  }
-  
-  /* Ensure overall mobile dimensions fit the screen */
-  html, body {
-    width: 100%;
-    max-width: 100vw;
   }
 }
 
-/* Hide mobile navbar on larger screens */
 @media screen and (min-width: 769px) {
   #mobileNavbar {
-    display: none;
+    display: none !important;
   }
 }
 
