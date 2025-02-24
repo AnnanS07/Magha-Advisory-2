@@ -4,18 +4,14 @@ html, body {
   padding: 0;
 }
 
-/* --------------------------
-   Mobile Header
---------------------------- */
+/* Mobile Header */
 #mobileHeader {
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 15px;
-  position: relative;
-  z-index: 10; /* High z-index so header appears on top */
-  /* Add margin-bottom to push the navbar down */
-  margin-bottom: 10px;
+  padding: 20px;
+  /* Use standard flow – no positioning needed */
+  margin-bottom: 10px; /* Pushes the navbar down */
 }
 
 #mobileHeader h1 {
@@ -28,43 +24,36 @@ html, body {
   font-size: 14px;
 }
 
-/* --------------------------
-   Navbar (Horizontal, Below Header)
---------------------------- */
+/* Navbar (Horizontal, below the header) */
 #navbar {
-  position: relative;
   background-color: #000;
   width: 100%;
-  overflow-x: auto;    /* Allow horizontal scrolling if needed */
-  white-space: nowrap; /* Prevent items from wrapping */
-  /* No z-index needed here so it naturally follows the header */
+  overflow-x: auto;    /* Allows horizontal scrolling if needed */
+  white-space: nowrap; /* Prevents wrapping */
+  margin: 0;           /* No overlap; it follows the header naturally */
 }
 
 #navbar ul {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 #navbar li {
+  padding: 10px 15px;
+  color: #fff;
+  cursor: pointer;
   flex: 0 0 auto;
   text-align: center;
-  padding: 10px 15px;
-  cursor: pointer;
-  color: #fff;
 }
 
 #navbar li i {
-  display: block;
   font-size: 20px;
-  line-height: 1;
+  display: block;
 }
 
 #navbar li span {
-  display: block;
   font-size: 12px;
   margin-top: 2px;
 }
@@ -74,20 +63,16 @@ html, body {
   border-radius: 4px;
 }
 
-/* --------------------------
-   Main Content Styling
---------------------------- */
+/* Main Content Styling */
 main {
   padding: 15px;
 }
 
 main section {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-/* --------------------------
-   Footer Styling
---------------------------- */
+/* Footer Styling */
 footer {
   background-color: #333;
   color: #fff;
