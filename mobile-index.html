@@ -5,7 +5,9 @@
     <!-- Responsive meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magha Advisory Dashboard - Mobile</title>
-    <!-- Link to your mobile-specific CSS -->
+    <!-- Load desktop styles first -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Load mobile-specific styles after desktop styles -->
     <link rel="stylesheet" href="mobile.css" />
     <!-- Font Awesome for icons -->
     <link
@@ -92,7 +94,8 @@
       }
     </style>
   </head>
-  <body>
+  <!-- Adding class "mobile" so that mobile.css rules are scoped to mobile devices -->
+  <body class="mobile">
     <!-- Mobile Header -->
     <header id="mobileHeader">
       <h1>Magha Advisory Dashboard</h1>
