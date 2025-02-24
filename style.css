@@ -164,22 +164,56 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  /* Remove the fixed sidebar and let it be in document flow */
+  /* Hide the sidebar completely */
   #sidebar {
-    width: 100%;
-    position: relative;
-    left: 0;
-    top: 0;
-    height: auto;
-    padding: 0;
-    background-color: #333;
+    display: none;
   }
-  /* Adjust the main content to not have a left margin */
-  #content {
-    margin-left: 0;
+  
+  /* Style the new topbar for mobile */
+  #topbar {
+    display: block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    /* Add top padding to allow space for the top nav */
-    padding-top: 60px;
+    z-index: 1000;
+  }
+  
+  /* Topbar navigation list */
+  #topbar ul {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Topbar navigation items: adjust icon size & style */
+  #topbar ul li {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    /* Optional: add a hover effect */
+    transition: color 0.3s;
+  }
+  
+  #topbar ul li:hover {
+    color: #ccc;
+  }
+  
+  /* Move main content down to clear the topbar */
+  #content {
+    padding-top: 60px; /* Adjust this value to match topbar height */
+  }
+}
+
+/* Hide the topbar on larger screens */
+@media (min-width: 769px) {
+  #topbar {
+    display: none;
   }
 }
 
