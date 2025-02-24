@@ -154,91 +154,77 @@ For instance, you might show a sidebar.
 }
 */
 
-/* --- Mobile Version for Portrait Mode (Top Navbar with Icon & Label) --- */
+/* Portrait Mode for Mobile Devices */
 @media screen and (max-width: 768px) and (orientation: portrait) {
-  /* Base Reset for Mobile Version */
-  html, body {
-    width: 100%;
+  /* Mobile Header */
+  #mobileHeader {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  #mobileHeader h1 {
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    font-size: 18px;
+  }
+  #mobileHeader p {
+    margin: 0;
+    font-size: 14px;
   }
 
-  /* Hide the desktop sidebar on mobile */
-  #sidebar {
-    display: none !important;
-  }
-
-  /* Mobile Top Navbar (displayed as part of the document flow) */
+  /* Mobile Top Navigation Bar in Portrait Mode */
   #mobileNavbar {
-    display: block !important;
-    position: relative; /* No longer fixed so it scrolls */
-    width: 100%;
-    height: 70px; /* Height increased for icon and label */
-    background-color: #000; /* Jet black */
-    z-index: auto;
-  }
-
-  /* Navbar inner container */
-  #mobileNavbar nav {
-    height: 100%;
+    display: block;
+    position: relative; /* Positioned in the normal document flow */
+    background-color: #000;
     width: 100%;
   }
-
-  /* Navbar list, arranged horizontally */
-  #mobileNavbar nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  #mobileNavbar ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-
-  /* Navbar items styling: icon on top, label below */
-  #mobileNavbar nav ul li {
-    color: #fff;
+  #mobileNavbar li {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    color: #fff;
   }
-
-  /* Active/Focus state for navbar items, simulating desktop sidebar behavior */
-  #mobileNavbar nav ul li.active,
-  #mobileNavbar nav ul li:focus {
-    background-color: #444; /* Change background when active/focused */
-  }
-
-  /* Icon styling */
-  #mobileNavbar nav ul li i {
+  #mobileNavbar li i {
+    display: block;
     font-size: 20px;
     line-height: 1;
   }
-
-  /* Label styling */
-  #mobileNavbar nav ul li .nav-label {
+  #mobileNavbar li span {
+    display: block;
     font-size: 12px;
     margin-top: 2px;
-    line-height: 1;
+  }
+  /* Optional Active State for Nav Items */
+  #mobileNavbar li.active {
+    background-color: #444;
   }
 
-  /* Adjust main content: using a reduced top padding since navbar is no longer fixed */
-  #content {
-    margin: 0;
-    padding-top: 20px;  /* Adjust this value as needed */
-    width: 100%;
+  /* Main Content Extra Top Padding:
+     Here we add enough padding so that neither the header nor the navbar overlap the content.
+     (Adjust the value as needed to match your header and nav heights.) */
+  main {
+    padding-top: 130px; /* Example: 60px header + 70px nav = 130px */
   }
+}
 
-  /* Footer styling on mobile */
-  footer {
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    background-color: #333;  /* Matching overall color scheme */
-    color: #fff;
-    text-align: center;
+/* Landscape Mode for Mobile Devices */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  /* Hide the Mobile Navbar in Landscape Mode */
+  #mobileNavbar {
+    display: none;
+  }
+  /* Adjust main content padding if needed (only header remains visible) */
+  main {
+    padding-top: 60px; /* Assume header is 60px tall */
   }
 } 
