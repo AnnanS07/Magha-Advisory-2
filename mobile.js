@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add active class to the clicked item
       this.classList.add("active");
 
-      // Get the target section's ID from data-target attribute
+      // Retrieve the target section's ID from the data-target attribute
       const targetID = this.getAttribute("data-target");
       if (targetID) {
         const targetElement = document.getElementById(targetID);
