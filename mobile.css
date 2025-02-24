@@ -1,4 +1,4 @@
-/* --- Base reset for the mobile version --- */
+/* --- Base Reset for Mobile Version --- */
 html, body {
   width: 100%;
   margin: 0;
@@ -6,26 +6,25 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Hide the desktop sidebar entirely on mobile */
+/* Hide the Desktop Sidebar on Mobile */
 #sidebar {
   display: none !important;
 }
 
 /* --- Mobile Portrait Mode Styles --- */
 @media (orientation: portrait) {
-  /* The Mobile Topbar (navbar) */
+  /* Mobile Top Navbar */
   #mobileNavbar {
     display: block !important;
     position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    height: 55px;  /* Exact navbar height */
+    height: 55px;  /* Set the exact navbar height */
     background-color: #333;
-    z-index: 10000;  /* High z-index so it stays on top */
+    z-index: 10000;  /* Keep it on top */
   }
   
-  /* Navigation container inside the mobile navbar */
   #mobileNavbar nav {
     height: 100%;
     width: 100%;
@@ -49,14 +48,14 @@ html, body {
     cursor: pointer;
   }
   
-  /* Push content down so it does not hide behind the topbar */
+  /* Ensure Main Content is Pushed Below the Navbar */
   #content {
     margin: 0;
-    padding-top: 65px;  /* Ensure this is at least the navbar height plus some extra spacing */
+    padding-top: 65px;  /* Navbar height plus extra spacing */
     width: 100%;
   }
   
-  /* Also adapt footer so it fits within the mobile view */
+  /* Footer for Mobile */
   footer {
     width: 100%;
     margin: 0;
@@ -64,9 +63,9 @@ html, body {
 }
 
 /* --- Mobile Landscape Mode Styles (Optional) --- */
-/*
-   If you prefer the sidebar in landscape mode, you can uncomment these rules.
-   They show the desktop sidebar and hide the mobile navbar.
+/* 
+If you want different behavior in landscape, define here.
+For instance, you might show a sidebar. 
 */
 /*
 @media (orientation: landscape) {
