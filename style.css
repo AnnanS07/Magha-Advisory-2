@@ -163,67 +163,69 @@ footer {
 }
 
 /* ----------------
-   Mobile Phone Layout (Build New From Scratch)
+   Mobile Phone Layout (New from Scratch)
    ---------------- */
-@media (max-width: 768px) {
-
-  /* Hide the desktop sidebar */
+@media screen and (max-width: 768px) {
+  /* Hide the desktop sidebar completely */
   #sidebar {
-    display: none;
+    display: none !important;
   }
-
-  /* Mobile Navbar */
-  #mobileNavbar {
+  
+  /* Reset wrapper so it doesn't reserve space for sidebar */
+  #wrapper {
     display: block;
-    width: 100%;
-    background-color: #333;
+    margin: 0;
+  }
+  
+  /* Mobile Navbar (Topbar) */
+  #mobileNavbar {
+    display: block !important;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 55px;  /* Accurate navbar height */
+    background-color: #333;
     z-index: 1000;
-    height: 55px; /* Accurate navbar height */
-    line-height: 55px;
   }
-
+  
+  #mobileNavbar nav {
+    height: 100%;
+  }
+  
   #mobileNavbar nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-
+  
   #mobileNavbar nav ul li {
     flex: 1;
     text-align: center;
     cursor: pointer;
     color: #fff;
+    font-size: 20px;
   }
-
-  #mobileNavbar nav ul li i {
-    font-size: 22px;
-    display: block;
-  }
-
-  /* If you prefer to hide text labels on mobile, uncomment the next rule.
-     Otherwise, the labels will be shown below the icons. */
+  
+  /* If you prefer to hide the label text for a minimalist look, leave as none */
   #mobileNavbar nav ul li .nav-label {
-    font-size: 10px;
-    display: none;
+    display: none; /* Change to inline-block and adjust font size if you prefer labels */
   }
-
-  /* Adjust the main content to start below the mobile navbar */
+  
+  /* Main Content Adjustment: Push content below the mobile navbar */
   #content {
-    margin-top: 55px;
-    margin-left: 0;
+    margin: 0;
+    padding-top: 70px;  /* Extra space to ensure content doesn't hide under navbar */
     width: 100%;
   }
 }
-
-/* Hide mobile navbar on desktop screens */
-@media (min-width: 769px) {
+  
+/* Hide mobile navbar on larger screens */
+@media screen and (min-width: 769px) {
   #mobileNavbar {
     display: none;
   }
