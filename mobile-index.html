@@ -7,16 +7,40 @@
     <title>Magha Advisory Dashboard - Mobile</title>
     <!-- Mobile-specific CSS -->
     <link rel="stylesheet" href="mobile.css" />
-    <!-- Font Awesome for icons (ensure your integrity/settings are as needed) -->
+    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      /* Inline mobile header styling (if not already in mobile.css) */
+      #mobileHeader {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+      #mobileHeader h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      #mobileHeader p {
+        margin: 0;
+        font-size: 14px;
+      }
+      /* Ensure the mobile topnav is in the flow (not fixed) */
+      #mobileNavbar {
+        position: relative;
+        width: 100%;
+        height: 70px; /* Sufficient height for icon + label */
+        background-color: #000;
+      }
+    </style>
   </head>
   <body>
-    <!-- Mobile Header (only for mobile) -->
+    <!-- Mobile Header (displayed at the very top) -->
     <header id="mobileHeader">
       <div class="mobile-header-content">
         <h1>Magha Advisory Dashboard</h1>
@@ -24,7 +48,7 @@
       </div>
     </header>
 
-    <!-- Mobile Top Navigation (below the header, scrolls with page) -->
+    <!-- Mobile Top Navigation (below header, scrolls with page) -->
     <header id="mobileNavbar">
       <nav>
         <ul>
@@ -70,16 +94,66 @@
         <h2>Overview</h2>
         <p>Content for the Overview section goes here...</p>
       </section>
-      <!-- Additional sections for SIP, SWP, Lumpsum, Goal, Retirement, Education, Loan, etc. -->
+      <section id="sipSection" class="page-section">
+        <h2>SIP Calculator</h2>
+        <p>Content for the SIP section goes here...</p>
+      </section>
+      <section id="swpSection" class="page-section">
+        <h2>SWP Calculator</h2>
+        <p>Content for the SWP section goes here...</p>
+      </section>
+      <section id="lumpsumSection" class="page-section">
+        <h2>Lumpsum Calculator</h2>
+        <p>Content for the Lumpsum section goes here...</p>
+      </section>
+      <section id="goalSection" class="page-section">
+        <h2>Goal Planner</h2>
+        <p>Content for the Goal section goes here...</p>
+      </section>
+      <section id="retirementSection" class="page-section">
+        <h2>Retirement Planner</h2>
+        <p>Content for the Retirement section goes here...</p>
+      </section>
+      <section id="educationSection" class="page-section">
+        <h2>Education Planner</h2>
+        <p>Content for the Education section goes here...</p>
+      </section>
+      <section id="loanSection" class="page-section">
+        <h2>Loan Calculator</h2>
+        <p>Content for the Loan section goes here...</p>
+      </section>
     </main>
 
-    <!-- Footer (shared between mobile and desktop, if desired) -->
+    <!-- Footer -->
     <footer>
       <div class="container">
         <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript for Mobile Navigation Interactivity -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navItems = document.querySelectorAll("#mobileNavbar li");
+        navItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            // Remove active state from all nav items
+            navItems.forEach(function (nav) {
+              nav.classList.remove("active");
+            });
+            // Add active class to the clicked item
+            this.classList.add("active");
+            // If a data-target is specified, scroll into view the corresponding section
+            const targetID = this.getAttribute("data-target");
+            if (targetID) {
+              const targetEl = document.getElementById(targetID);
+              if (targetEl) {
+                targetEl.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html> 
