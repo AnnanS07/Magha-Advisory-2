@@ -169,16 +169,14 @@ For instance, you might show a sidebar.
     display: none !important;
   }
 
-  /* Mobile Top Navbar (Always shown on mobile devices in portrait mode) */
+  /* Mobile Top Navbar (displayed as part of the document flow) */
   #mobileNavbar {
     display: block !important;
-    position: fixed !important;
-    top: 0;
-    left: 0;
+    position: relative; /* No longer fixed so it scrolls */
     width: 100%;
-    height: 70px; /* Increased height to accommodate icon and label */
+    height: 70px; /* Height increased for icon and label */
     background-color: #000; /* Jet black */
-    z-index: 10000 !important;
+    z-index: auto;
   }
 
   /* Navbar inner container */
@@ -198,7 +196,7 @@ For instance, you might show a sidebar.
     height: 100%;
   }
 
-  /* Navbar items styling - display icon and label vertically */
+  /* Navbar items styling: icon on top, label below */
   #mobileNavbar nav ul li {
     color: #fff;
     cursor: pointer;
@@ -206,6 +204,12 @@ For instance, you might show a sidebar.
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  /* Active/Focus state for navbar items, simulating desktop sidebar behavior */
+  #mobileNavbar nav ul li.active,
+  #mobileNavbar nav ul li:focus {
+    background-color: #444; /* Change background when active/focused */
   }
 
   /* Icon styling */
@@ -221,10 +225,10 @@ For instance, you might show a sidebar.
     line-height: 1;
   }
 
-  /* Adjust main content so it doesn't hide behind the navbar */
+  /* Adjust main content: using a reduced top padding since navbar is no longer fixed */
   #content {
     margin: 0;
-    padding-top: 75px;  /* Slightly more than navbar height */
+    padding-top: 20px;  /* Adjust this value as needed */
     width: 100%;
   }
 
@@ -233,7 +237,7 @@ For instance, you might show a sidebar.
     width: 100%;
     margin: 0;
     padding: 10px;
-    background-color: #333;  /* Matching header/footer color scheme */
+    background-color: #333;  /* Matching overall color scheme */
     color: #fff;
     text-align: center;
   }
