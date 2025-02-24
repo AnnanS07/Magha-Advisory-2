@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <!-- Responsive meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Magha Advisory Dashboard - Mobile (Portrait)</title>
+    <title>Magha Advisory Dashboard - Mobile</title>
     <!-- Link your mobile-specific CSS -->
     <link rel="stylesheet" href="mobile.css" />
     <!-- Font Awesome for icons -->
@@ -14,19 +14,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- Inline CSS to enforce portrait mobile styles -->
+    <!-- Inline styles are optional; these can be moved into mobile.css -->
     <style>
-      /* Reset margins and padding */
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
       }
-      /* Mobile Header (always at the top) */
+      /* Mobile Header (sits at the very top) */
       #mobileHeader {
         background-color: #333;
         color: #fff;
         text-align: center;
         padding: 15px;
+        position: relative;
+        z-index: 2;
       }
       #mobileHeader h1 {
         margin: 0;
@@ -36,41 +38,43 @@
         margin: 0;
         font-size: 14px;
       }
-      /* Mobile Top Navigation Bar (positioned relative so it's in the document flow) */
-      #mobileNavbar {
-        position: relative !important;
+      /* Navbar: a horizontal nav below the header */
+      #navbar {
+        position: relative;
         background-color: #000;
         width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        z-index: 1;
       }
-      /* Horizontal list styling for nav items */
-      #mobileNavbar ul {
+      #navbar ul {
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         margin: 0;
         padding: 0;
         list-style: none;
       }
-      #mobileNavbar li {
-        flex: 1;
+      #navbar li {
+        flex: 0 0 auto;
         text-align: center;
-        padding: 10px 0;
+        padding: 10px 15px;
         cursor: pointer;
         color: #fff;
       }
-      #mobileNavbar li i {
+      #navbar li i {
         display: block;
         font-size: 20px;
         line-height: 1;
       }
-      #mobileNavbar li span {
+      #navbar li span {
         display: block;
         font-size: 12px;
         margin-top: 2px;
       }
-      /* Active state for nav items */
-      #mobileNavbar li.active {
+      #navbar li.active {
         background-color: #444;
+        border-radius: 4px;
       }
       /* Main content styling */
       main {
@@ -95,8 +99,8 @@
       <p>Your Trusted Investment &amp; Financial Tools</p>
     </header>
 
-    <!-- Mobile Top Navigation (placed immediately below the header) -->
-    <nav id="mobileNavbar">
+    <!-- Normal Navbar below the header -->
+    <nav id="navbar">
       <ul>
         <li data-target="overviewSection">
           <i class="fas fa-home"></i>
@@ -141,31 +145,31 @@
       </section>
       <section id="sipSection">
         <h2>SIP Calculator</h2>
-        <p>Content for the SIP Calculator section goes here...</p>
+        <p>Details for the SIP Calculator...</p>
       </section>
       <section id="swpSection">
         <h2>SWP Calculator</h2>
-        <p>Content for the SWP Calculator section goes here...</p>
+        <p>Details for the SWP Calculator...</p>
       </section>
       <section id="lumpsumSection">
         <h2>Lumpsum Calculator</h2>
-        <p>Content for the Lumpsum Calculator section goes here...</p>
+        <p>Details for the Lumpsum Calculator...</p>
       </section>
       <section id="goalSection">
         <h2>Goal Planner</h2>
-        <p>Content for the Goal Planner section goes here...</p>
+        <p>Details for the Goal Planner...</p>
       </section>
       <section id="retirementSection">
         <h2>Retirement Planner</h2>
-        <p>Content for the Retirement Planner section goes here...</p>
+        <p>Details for the Retirement Planner...</p>
       </section>
       <section id="educationSection">
         <h2>Education Planner</h2>
-        <p>Content for the Education Planner section goes here...</p>
+        <p>Details for the Education Planner...</p>
       </section>
       <section id="loanSection">
         <h2>Loan Calculator</h2>
-        <p>Content for the Loan Calculator section goes here...</p>
+        <p>Details for the Loan Calculator...</p>
       </section>
     </main>
 
@@ -174,7 +178,7 @@
       <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
     </footer>
 
-    <!-- Load external JavaScript; best practice is to put this in mobile.js -->
+    <!-- External Mobile JavaScript to make the navbar clickable and functional -->
     <script src="mobile.js"></script>
   </body>
 </html> 
