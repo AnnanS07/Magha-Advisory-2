@@ -3,19 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // Select all nav items within the navbar
   const navItems = document.querySelectorAll("#navbar li");
 
-  navItems.forEach(item => {
+  navItems.forEach(function (item) {
     item.addEventListener("click", function () {
-      // Remove active class from all nav items
+      // Remove the "active" class from all nav items
       navItems.forEach(i => i.classList.remove("active"));
-      // Add active class to the clicked item
+      
+      // Add the "active" class to the clicked item
       this.classList.add("active");
-
-      // Retrieve the data-target attribute to know which section to open.
+      
+      // Retrieve the data-target attribute to determine which section to scroll to
       const targetID = this.getAttribute("data-target");
       if (targetID) {
         const targetElement = document.getElementById(targetID);
         if (targetElement) {
-          // Smoothly scroll to the corresponding section
+          // Smoothly scroll to the target section
           targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
