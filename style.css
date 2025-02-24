@@ -1,6 +1,12 @@
 /* Overall Page */
-body {
+html, body {
+  height: 100%;
   margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   background-color: #f7f7f7;
   color: #333;
@@ -9,6 +15,7 @@ body {
 /* Wrapper Layout */
 #wrapper {
   display: flex;
+  flex: 1;
 }
 
 /* Sidebar Styles */
@@ -151,7 +158,8 @@ footer {
   color: #fff;
   text-align: center;
   padding: 15px 0;
-  margin-top: 20px;
+  margin-top: auto; /* This pushes the footer to the bottom */
+  flex-shrink: 0;
 }
 
 /* Responsive Design */
