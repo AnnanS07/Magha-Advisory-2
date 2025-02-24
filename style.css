@@ -344,47 +344,63 @@ footer {
   margin-right: 0;
 }
 
-/* Mobile Portrait Mode: Fixed Top Navbar */
+/* --- Mobile Portrait Mode: Force a Top Navbar --- */
 @media screen and (max-width: 768px) and (orientation: portrait) {
-  /* Force the mobile topbar (navbar) to be fixed at the very top */
+  /* Hide the desktop sidebar */
+  #sidebar {
+    display: none !important;
+  }
+  
+  /* Ensure the mobile navbar is visible and fixed at the top */
   #mobileNavbar {
     display: block !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 55px !important; /* Set an accurate, fixed navbar height */
+    height: 55px !important;  /* Set the exact navbar height */
     background-color: #333;
-    z-index: 10000 !important; /* High z-index to ensure it overlays other content */
+    z-index: 10000 !important; /* Very high so it overlays any other content */
   }
   
-  /* Make sure the desktop sidebar is not shown in portrait mode */
-  #sidebar {
-    display: none !important;
-  }
-  
-  /* Adjust main content so it begins below the fixed topbar */
-  #content {
-    margin: 0;
-    padding-top: 70px; /* Allowing some extra space so content isn't hidden by navbar */
+  /* Style the contents of the mobile navbar */
+  #mobileNavbar nav {
+    height: 100%;
     width: 100%;
   }
   
-  /* Footer adjustment to span full width */
-  footer {
+  #mobileNavbar nav ul {
     margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+  }
+  
+  #mobileNavbar nav ul li {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* Ensure the main content appears below the fixed navbar */
+  #content {
+    margin: 0;
+    padding-top: 65px;  /* This should be at least the navbar height (55px) plus a slight margin */
     width: 100%;
   }
 }
 
-/* Mobile Landscape Mode: Use Desktop Sidebar */
+/* --- Optional: Mobile Landscape Mode (Desktop Sidebar) --- */
 @media screen and (max-width: 768px) and (orientation: landscape) {
-  /* Hide the mobile topbar in landscape mode */
+  /* Hide the mobile topbar */
   #mobileNavbar {
     display: none !important;
   }
-  
-  /* Show the sidebar (desktop version) */
+  /* Show and position the desktop sidebar properly */
   #sidebar {
     display: block !important;
     position: fixed;
@@ -393,17 +409,15 @@ footer {
     width: 250px;
     min-height: 100vh;
     padding-top: 20px;
-    z-index: 100; /* Lower z-index so it doesn't cover content like the footer */
+    z-index: 100;
   }
   
-  /* Adjust main content to leave space for the sidebar */
+  /* Adjust main content and footer to leave space for the sidebar */
   #content {
     margin-left: 250px;
-    padding-top: 20px; /* Adjust as needed */
+    padding-top: 20px;
     width: calc(100% - 250px);
   }
-  
-  /* Adjust the footer so that it isn't hidden behind the sidebar */
   footer {
     margin-left: 250px;
     width: calc(100% - 250px);
