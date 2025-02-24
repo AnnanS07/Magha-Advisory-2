@@ -164,28 +164,33 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* Remove the fixed sidebar and let it be in document flow */
   #sidebar {
-    width: 200px;
+    width: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: auto;
+    padding: 0;
+    background-color: #333;
   }
+  /* Adjust the main content to not have a left margin */
   #content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
+    margin-left: 0;
+    width: 100%;
+    /* Add top padding to allow space for the top nav */
+    padding-top: 60px;
   }
 }
 
 @media (max-width: 480px) {
-  /* Transform the sidebar into a horizontal top navigation */
   #sidebar {
-    width: 100%;
-    position: relative;
-    top: 0;
-    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     height: 50px;
     padding: 0;
-    background-color: #333;
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
   }
   #sidebar ul {
     display: flex;
@@ -193,21 +198,16 @@ footer {
     margin: 0;
     padding: 0;
     list-style: none;
+    justify-content: space-around;
   }
   #sidebar ul li {
-    flex: 1;
+    flex: none;
     text-align: center;
     padding: 10px 5px;
     cursor: pointer;
     white-space: nowrap;
     font-size: 14px;
   }
-  /* Optionally, if you prefer to show only icons: 
-     you can hide the text nodes (assuming you wrap them in a span in your HTML)
-     or reduce the font size further. For example:
-     
-     #sidebar ul li span { display: none; }
-  */
   #content {
     margin: 0;
     /* Add top padding to leave space for the horizontal nav */
