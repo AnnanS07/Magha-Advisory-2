@@ -5,7 +5,7 @@
     <!-- Responsive meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magha Advisory Dashboard - Mobile (Portrait)</title>
-    <!-- Link your mobile-specific CSS (if needed) -->
+    <!-- Link your mobile-specific CSS -->
     <link rel="stylesheet" href="mobile.css" />
     <!-- Font Awesome for icons -->
     <link
@@ -36,9 +36,9 @@
         margin: 0;
         font-size: 14px;
       }
-      /* Mobile Top Navigation Bar (positioned relative so it is in the flow) */
+      /* Mobile Top Navigation Bar (positioned relative so it's in the document flow) */
       #mobileNavbar {
-        position: relative !important; /* ensure it is not fixed */
+        position: relative !important;
         background-color: #000;
         width: 100%;
       }
@@ -174,30 +174,7 @@
       <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Smooth Scrolling on Nav Item Clicks -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const navItems = document.querySelectorAll("#mobileNavbar li");
-        navItems.forEach(function (item) {
-          item.addEventListener("click", function () {
-            // Clear active class from all nav items
-            navItems.forEach(i => i.classList.remove("active"));
-            // Set active class on the clicked item
-            this.classList.add("active");
-
-            const targetID = this.getAttribute("data-target");
-            const targetSection = document.getElementById(targetID);
-            if (targetSection) {
-              // Calculate the total offset: header + navbar heights
-              const headerHeight = document.getElementById("mobileHeader").offsetHeight;
-              const navHeight = document.getElementById("mobileNavbar").offsetHeight;
-              // Get target's top relative to document and subtract header and nav heights
-              const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
-              window.scrollTo({ top: targetTop - headerHeight - navHeight, behavior: "smooth" });
-            }
-          });
-        });
-      });
-    </script>
+    <!-- Load external JavaScript; best practice is to put this in mobile.js -->
+    <script src="mobile.js"></script>
   </body>
 </html> 
