@@ -344,30 +344,69 @@ footer {
   margin-right: 0;
 }
 
-/* Ensure proper display in mobile portrait orientation */
+/* Mobile Portrait Mode: Fixed Top Navbar */
 @media screen and (max-width: 768px) and (orientation: portrait) {
-  /* Force the mobile navbar to display at the top */
+  /* Force the mobile topbar (navbar) to be fixed at the very top */
   #mobileNavbar {
     display: block !important;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 55px; /* Adjust if necessary */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 55px !important; /* Set an accurate, fixed navbar height */
     background-color: #333;
-    z-index: 10000;
+    z-index: 10000 !important; /* High z-index to ensure it overlays other content */
   }
   
-  /* Hide the desktop sidebar completely */
+  /* Make sure the desktop sidebar is not shown in portrait mode */
   #sidebar {
     display: none !important;
   }
   
-  /* Adjust the main content so it starts below the navbar */
+  /* Adjust main content so it begins below the fixed topbar */
   #content {
-    padding-top: 70px; /* Extra space to clear the navbar */
+    margin: 0;
+    padding-top: 70px; /* Allowing some extra space so content isn't hidden by navbar */
+    width: 100%;
+  }
+  
+  /* Footer adjustment to span full width */
+  footer {
     margin: 0;
     width: 100%;
+  }
+}
+
+/* Mobile Landscape Mode: Use Desktop Sidebar */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  /* Hide the mobile topbar in landscape mode */
+  #mobileNavbar {
+    display: none !important;
+  }
+  
+  /* Show the sidebar (desktop version) */
+  #sidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    min-height: 100vh;
+    padding-top: 20px;
+    z-index: 100; /* Lower z-index so it doesn't cover content like the footer */
+  }
+  
+  /* Adjust main content to leave space for the sidebar */
+  #content {
+    margin-left: 250px;
+    padding-top: 20px; /* Adjust as needed */
+    width: calc(100% - 250px);
+  }
+  
+  /* Adjust the footer so that it isn't hidden behind the sidebar */
+  footer {
+    margin-left: 250px;
+    width: calc(100% - 250px);
   }
 }
 
