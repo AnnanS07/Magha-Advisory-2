@@ -7,7 +7,7 @@
     <title>Magha Advisory Dashboard - Mobile</title>
     <!-- Load desktop styles first -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Load mobile-specific styles after desktop styles -->
+    <!-- Then load mobile-specific styles -->
     <link rel="stylesheet" href="mobile.css" />
     <!-- Font Awesome for icons -->
     <link
@@ -17,7 +17,7 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <!-- Adding class "mobile" so that mobile.css rules are scoped to mobile devices -->
+  <!-- Adding class "mobile" to scope our mobile rules -->
   <body class="mobile">
     <!-- Mobile Header -->
     <header id="mobileHeader">
@@ -25,7 +25,7 @@
       <p>Your Trusted Investment &amp; Financial Tools</p>
     </header>
 
-    <!-- Navbar (horizontal, placed immediately below the header) -->
+    <!-- Navbar (horizontal, below header) -->
     <nav id="navbar">
       <ul>
         <li data-target="overviewSection">
@@ -104,7 +104,7 @@
       <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
     </footer>
 
-    <!-- Link to your mobile-specific JavaScript -->
+    <!-- Mobile-specific JavaScript -->
     <script src="mobile.js"></script>
   </body>
 </html> 

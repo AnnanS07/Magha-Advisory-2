@@ -10,9 +10,12 @@ html, body {
   color: #fff;
   text-align: center;
   padding: 20px;
-  position: relative;  /* Ensure header is positioned normally */
-  margin-bottom: 10px; /* Push the navbar down */
-  z-index: 100;        /* High z-index to ensure header appears above any overlapping elements */
+  position: relative;  /* Normal document flow */
+  z-index: 10;         /* High z-index so header stays on top */
+  /* Define a minimum height to ensure consistent layout */
+  min-height: 70px;
+  box-sizing: border-box;
+  margin-bottom: 10px; /* Space between header and navbar */
 }
 
 .mobile #mobileHeader h1 {
@@ -30,9 +33,11 @@ html, body {
   background-color: #000;
   width: 100%;
   overflow-x: auto;    /* Enables horizontal scrolling if needed */
-  white-space: nowrap; /* Prevents wrapping */
-  position: relative;  /* Normal document flow */
-  margin: 0;           /* No margins that can cause overlap */
+  white-space: nowrap; /* Prevents wrapping so all items stay in one line */
+  position: relative;  /* Keeps it in normal document flow */
+  z-index: 5;          /* Lower than header */
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 
 .mobile #navbar ul {
@@ -69,6 +74,7 @@ html, body {
 /* Main Content Styling */
 .mobile main {
   padding: 15px;
+  box-sizing: border-box;
 }
 
 main section {
@@ -81,4 +87,5 @@ main section {
   color: #fff;
   text-align: center;
   padding: 10px;
+  box-sizing: border-box;
 }

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (targetID) {
         const targetElement = document.getElementById(targetID);
         if (targetElement) {
-          // Smoothly scroll to the target section
+          // Smoothly scroll to the corresponding section
           targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
