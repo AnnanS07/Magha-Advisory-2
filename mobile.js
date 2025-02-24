@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   navItems.forEach(function (item) {
     item.addEventListener("click", function () {
-      // Remove the "active" class from all nav items
+      // Remove the "active" class from all navbar items
       navItems.forEach(i => i.classList.remove("active"));
       
       // Add the "active" class to the clicked item
