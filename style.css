@@ -1,36 +1,69 @@
-/* Global Box-Sizing */
+/* Global Reset */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Base Setup */
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   background-color: #f7f7f7;
   color: #333;
-  height: 100%;
 }
 
-/* Desktop Sidebar */
+/* Use Flex layout on the body for a sticky footer */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop Header (normal flow) */
+#desktopHeader {
+  width: 100%;
+  height: 55px;               /* Matches the features menu height */
+  background-color: #333;     /* Dark gray (same as footer) */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+#desktopHeader h1 {
+  margin: 0;
+  font-size: 18px;           /* Reduced font size to fit two lines */
+  line-height: 1;
+}
+
+#desktopHeader p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Main Container that wraps sidebar and main content */
+.main-container {
+  flex: 1;                    /* Grow to fill available vertical space */
+  display: flex;
+}
+
+/* Sidebar (unfixed, remains jet black) */
 #sidebar {
   width: 250px;
-  background-color: #333;
+  background-color: #000;     /* Jet black */
   color: #fff;
-  min-height: 100vh;
-  padding-top: 20px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 100;
+  padding: 20px 0;
+  /* Ensure the sidebar's background fills the available space */
+  min-height: calc(100vh - 55px - 55px);
 }
 
 #sidebar ul {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 #sidebar ul li {
@@ -43,56 +76,19 @@ html, body {
   background-color: #444;
 }
 
-/* Desktop Header */
-#desktopHeader {
-  position: fixed;
-  top: 0;
-  left: 250px; /* Header starts after the sidebar */
-  right: 0;
-  height: 80px;  /* Increased height for two-line text */
-  background-color: #333; /* Black color scheme (same as footer) */
-  color: #fff;
-  z-index: 150;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px 20px;
-}
-
-#desktopHeader h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-#desktopHeader p {
-  margin: 0;
-  font-size: 14px;
-}
-
-/* Desktop Main Content */
+/* Main Content */
 #content {
-  margin-left: 250px;
-  margin-top: 80px; /* Adjusted to clear the header */
+  flex: 1;
   padding: 20px;
-  padding-bottom: 90px;  /* Extra bottom padding so content is not hidden behind the footer */
-  width: calc(100% - 250px);
-  min-height: calc(100vh - 80px - 70px);  /* Header and footer height adjustment */
+  background-color: #f7f7f7;
 }
 
-/* Desktop Footer */
+/* Footer (in document flow & sticky at bottom) */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 250px;
-  right: 0;
-  padding: 20px;
-  background-color: #333; /* Dark background (same as header) */
+  width: 100%;
+  height: 55px;               /* Matches header height */
+  background-color: #333;     /* Dark gray */
   color: #fff;
-  z-index: 50;
-  
   display: flex;
   align-items: center;
   justify-content: center;
