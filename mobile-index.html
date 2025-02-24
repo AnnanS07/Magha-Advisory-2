@@ -5,7 +5,7 @@
     <!-- Responsive meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magha Advisory Dashboard - Mobile</title>
-    <!-- Mobile-specific CSS -->
+    <!-- You can link your external mobile.css if needed -->
     <link rel="stylesheet" href="mobile.css" />
     <!-- Font Awesome for icons -->
     <link
@@ -14,12 +14,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Minimal inline CSS to ensure our mobile topnav works as expected -->
     <style>
-      /* Inline mobile header styling (if not already in mobile.css) */
+      /* Reset margins/padding for mobile */
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      /* Mobile Header - appears at the very top */
       #mobileHeader {
-        background-color: #333;
+        background: #333;
         color: #fff;
-        padding: 10px;
+        padding: 15px;
         text-align: center;
       }
       #mobileHeader h1 {
@@ -30,95 +36,130 @@
         margin: 0;
         font-size: 14px;
       }
-      /* Ensure the mobile topnav is in the flow (not fixed) */
+      /* Mobile Top Navigation - relative positioning so it's part of the document flow */
       #mobileNavbar {
         position: relative;
-        width: 100%;
-        height: 70px; /* Sufficient height for icon + label */
-        background-color: #000;
+        background: #000;
+      }
+      /* Horizontal list for nav items */
+      #mobileNavbar nav ul {
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #mobileNavbar nav ul li {
+        flex-grow: 1;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+        color: #fff;
+      }
+      #mobileNavbar nav ul li i {
+        display: block;
+        font-size: 20px;
+        line-height: 1;
+      }
+      #mobileNavbar nav ul li span {
+        display: block;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+      /* Optional: active state for the nav items */
+      #mobileNavbar nav ul li.active {
+        background: #444;
+      }
+      /* Ensure section spacing; adjust as needed */
+      main section {
+        padding: 20px;
+        margin-top: 20px;
+      }
+      /* Footer styling */
+      footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
       }
     </style>
   </head>
   <body>
-    <!-- Mobile Header (displayed at the very top) -->
+    <!-- Mobile Header (Always at the very top) -->
     <header id="mobileHeader">
-      <div class="mobile-header-content">
-        <h1>Magha Advisory Dashboard</h1>
-        <p>Your Trusted Investment &amp; Financial Tools</p>
-      </div>
+      <h1>Magha Advisory Dashboard</h1>
+      <p>Your Trusted Investment &amp; Financial Tools</p>
     </header>
+    
+    <!-- Mobile Top Navigation (Placed below the header; not fixed) -->
+    <nav id="mobileNavbar">
+      <ul>
+        <li data-target="overviewSection">
+          <i class="fas fa-home"></i>
+          <span>Overview</span>
+        </li>
+        <li data-target="sipSection">
+          <i class="fas fa-chart-line"></i>
+          <span>SIP</span>
+        </li>
+        <li data-target="swpSection">
+          <i class="fas fa-money-bill-wave"></i>
+          <span>SWP</span>
+        </li>
+        <li data-target="lumpsumSection">
+          <i class="fas fa-piggy-bank"></i>
+          <span>Lumpsum</span>
+        </li>
+        <li data-target="goalSection">
+          <i class="fas fa-bullseye"></i>
+          <span>Goal</span>
+        </li>
+        <li data-target="retirementSection">
+          <i class="fas fa-umbrella-beach"></i>
+          <span>Retirement</span>
+        </li>
+        <li data-target="educationSection">
+          <i class="fas fa-user-graduate"></i>
+          <span>Education</span>
+        </li>
+        <li data-target="loanSection">
+          <i class="fas fa-hand-holding-usd"></i>
+          <span>Loan</span>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Mobile Top Navigation (below header, scrolls with page) -->
-    <header id="mobileNavbar">
-      <nav>
-        <ul>
-          <li data-target="overviewSection">
-            <i class="fas fa-home"></i>
-            <span class="nav-label">Overview</span>
-          </li>
-          <li data-target="sipSection">
-            <i class="fas fa-chart-line"></i>
-            <span class="nav-label">SIP</span>
-          </li>
-          <li data-target="swpSection">
-            <i class="fas fa-money-bill-wave"></i>
-            <span class="nav-label">SWP</span>
-          </li>
-          <li data-target="lumpsumSection">
-            <i class="fas fa-piggy-bank"></i>
-            <span class="nav-label">Lumpsum</span>
-          </li>
-          <li data-target="goalSection">
-            <i class="fas fa-bullseye"></i>
-            <span class="nav-label">Goal</span>
-          </li>
-          <li data-target="retirementSection">
-            <i class="fas fa-umbrella-beach"></i>
-            <span class="nav-label">Retirement</span>
-          </li>
-          <li data-target="educationSection">
-            <i class="fas fa-user-graduate"></i>
-            <span class="nav-label">Education</span>
-          </li>
-          <li data-target="loanSection">
-            <i class="fas fa-hand-holding-usd"></i>
-            <span class="nav-label">Loan</span>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- Main Content -->
+    <!-- Main Mobile Content -->
     <main id="content">
-      <section id="overviewSection" class="page-section">
+      <section id="overviewSection">
         <h2>Overview</h2>
         <p>Content for the Overview section goes here...</p>
       </section>
-      <section id="sipSection" class="page-section">
+      <section id="sipSection">
         <h2>SIP Calculator</h2>
         <p>Content for the SIP section goes here...</p>
       </section>
-      <section id="swpSection" class="page-section">
+      <section id="swpSection">
         <h2>SWP Calculator</h2>
         <p>Content for the SWP section goes here...</p>
       </section>
-      <section id="lumpsumSection" class="page-section">
+      <section id="lumpsumSection">
         <h2>Lumpsum Calculator</h2>
         <p>Content for the Lumpsum section goes here...</p>
       </section>
-      <section id="goalSection" class="page-section">
+      <section id="goalSection">
         <h2>Goal Planner</h2>
         <p>Content for the Goal section goes here...</p>
       </section>
-      <section id="retirementSection" class="page-section">
+      <section id="retirementSection">
         <h2>Retirement Planner</h2>
         <p>Content for the Retirement section goes here...</p>
       </section>
-      <section id="educationSection" class="page-section">
+      <section id="educationSection">
         <h2>Education Planner</h2>
         <p>Content for the Education section goes here...</p>
       </section>
-      <section id="loanSection" class="page-section">
+      <section id="loanSection">
         <h2>Loan Calculator</h2>
         <p>Content for the Loan section goes here...</p>
       </section>
@@ -126,30 +167,29 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container">
-        <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
-      </div>
+      <p>&copy; 2025 Magha Advisory. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Mobile Navigation Interactivity -->
+    <!-- JavaScript for Top Navigation Interactivity -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const navItems = document.querySelectorAll("#mobileNavbar li");
+        // Grab all nav items in the mobile navbar
+        const navItems = document.querySelectorAll("#mobileNavbar ul li");
+
         navItems.forEach(function (item) {
           item.addEventListener("click", function () {
-            // Remove active state from all nav items
+            // Clear active class from all items
             navItems.forEach(function (nav) {
               nav.classList.remove("active");
             });
-            // Add active class to the clicked item
+            // Set active class on the clicked item
             this.classList.add("active");
-            // If a data-target is specified, scroll into view the corresponding section
-            const targetID = this.getAttribute("data-target");
-            if (targetID) {
-              const targetEl = document.getElementById(targetID);
-              if (targetEl) {
-                targetEl.scrollIntoView({ behavior: "smooth" });
-              }
+
+            // Get the target section's id from data-target and scroll to it smoothly
+            const targetId = this.getAttribute("data-target");
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: "smooth" });
             }
           });
         });
