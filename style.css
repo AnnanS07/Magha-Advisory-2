@@ -2,6 +2,8 @@
 html, body {
   height: 100%;
   margin: 0;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 body {
@@ -163,7 +165,7 @@ footer {
 }
 
 /* ----------------
-   Mobile Phone Layout (New from Scratch)
+   Mobile Phone Layout (New Template)
    ---------------- */
 @media screen and (max-width: 768px) {
   /* Hide the desktop sidebar completely */
@@ -171,22 +173,22 @@ footer {
     display: none !important;
   }
   
-  /* Reset wrapper so it doesn't reserve space for sidebar */
+  /* Remove the flex wrapper and use a block layout */
   #wrapper {
     display: block;
     margin: 0;
   }
   
-  /* Mobile Navbar (Topbar) */
+  /* Mobile Topbar / Navbar */
   #mobileNavbar {
     display: block !important;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 55px;  /* Accurate navbar height */
+    height: 55px;  /* Set an accurate, fixed navbar height */
     background-color: #333;
-    z-index: 1000;
+    z-index: 10000; /* High z-index to ensure it appears on top */
   }
   
   #mobileNavbar nav {
@@ -211,19 +213,27 @@ footer {
     font-size: 20px;
   }
   
-  /* If you prefer to hide the label text for a minimalist look, leave as none */
+  /* Optionally hide label text (or display it as needed) */
   #mobileNavbar nav ul li .nav-label {
-    display: none; /* Change to inline-block and adjust font size if you prefer labels */
+    display: none;
   }
   
-  /* Main Content Adjustment: Push content below the mobile navbar */
+  /* Main content adjustment:
+     - Remove left margin
+     - Add top padding to make room for the fixed topbar */
   #content {
     margin: 0;
-    padding-top: 70px;  /* Extra space to ensure content doesn't hide under navbar */
+    padding: 70px 10px 10px 10px;  /* Top padding exceeds the 55px navbar for spacing */
     width: 100%;
   }
-}
   
+  /* Ensure overall mobile dimensions fit the screen */
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
 /* Hide mobile navbar on larger screens */
 @media screen and (min-width: 769px) {
   #mobileNavbar {

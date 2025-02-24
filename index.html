@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Ensure proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magha Advisory Dashboard</title>
     <!-- Google Fonts: Montserrat -->
@@ -26,7 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
   </head>
   <body>
-    <!-- Mobile Navbar: This will appear only on mobile devices -->
+    <!-- Mobile Topbar (for phones/tablets) -->
     <header id="mobileNavbar">
       <nav>
         <ul>
@@ -66,363 +67,366 @@
       </nav>
     </header>
 
-    <!-- Desktop Sidebar (will be hidden on mobile) -->
-    <nav id="sidebar">
-      <ul>
-        <li data-target="overviewSection"><i class="fas fa-home"></i> Overview</li>
-        <li data-target="sipSection"><i class="fas fa-chart-line"></i> SIP Calculator</li>
-        <li data-target="swpSection"><i class="fas fa-money-bill-wave"></i> SWP Calculator</li>
-        <li data-target="lumpsumSection"><i class="fas fa-piggy-bank"></i> Lumpsum Calculator</li>
-        <li data-target="goalSection"><i class="fas fa-bullseye"></i> Goal Planner</li>
-        <li data-target="retirementSection"><i class="fas fa-umbrella-beach"></i> Retirement Planner</li>
-        <li data-target="educationSection"><i class="fas fa-user-graduate"></i> Education Planner</li>
-        <li data-target="loanSection"><i class="fas fa-hand-holding-usd"></i> Loan Calculator</li>
-      </ul>
-    </nav>
+    <!-- Wrapper for desktop layout -->
+    <div id="wrapper">
+      <!-- Desktop Sidebar (will be hidden on mobile devices) -->
+      <nav id="sidebar">
+        <ul>
+          <li data-target="overviewSection"><i class="fas fa-home"></i> Overview</li>
+          <li data-target="sipSection"><i class="fas fa-chart-line"></i> SIP Calculator</li>
+          <li data-target="swpSection"><i class="fas fa-money-bill-wave"></i> SWP Calculator</li>
+          <li data-target="lumpsumSection"><i class="fas fa-piggy-bank"></i> Lumpsum Calculator</li>
+          <li data-target="goalSection"><i class="fas fa-bullseye"></i> Goal Planner</li>
+          <li data-target="retirementSection"><i class="fas fa-umbrella-beach"></i> Retirement Planner</li>
+          <li data-target="educationSection"><i class="fas fa-user-graduate"></i> Education Planner</li>
+          <li data-target="loanSection"><i class="fas fa-hand-holding-usd"></i> Loan Calculator</li>
+        </ul>
+      </nav>
 
-    <!-- Main Content -->
-    <main id="content">
-      <!-- Overview Section -->
-      <section id="overviewSection" class="page-section">
-        <h2>Overview</h2>
-        <div class="fund-selector">
-          <div class="form-group">
-            <label for="overviewFundHouseSelect">Select Mutual Fund House:</label>
-            <select id="overviewFundHouseSelect">
-              <option value="All">All</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="overviewFundNameInput">Mutual Fund Name:</label>
-            <input type="text" id="overviewFundNameInput" list="overviewFundList" placeholder="Enter Mutual Fund Name" />
-            <datalist id="overviewFundList">
-              <!-- Options populated dynamically by your script -->
-            </datalist>
-          </div>
-        </div>
-        <div class="overview-chart-container">
-          <canvas id="overviewChart" width="400" height="200"></canvas>
-        </div>
-        <div id="overviewInfo">
-          <!-- Mutual fund info will be displayed here -->
-        </div>
-      </section>
-
-      <!-- SIP Calculator Section -->
-      <section id="sipSection" class="page-section">
-        <h2>SIP Calculator</h2>
-        <div class="fund-selector">
-          <div class="form-group">
-            <label for="sipFundHouseSelect">Select Mutual Fund House:</label>
-            <select id="sipFundHouseSelect">
-              <option value="All">All</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="sipFundNameInput">Select Mutual Fund:</label>
-            <input
-              type="text"
-              id="sipFundNameInput"
-              placeholder="Type mutual fund name"
-              list="sipFundList"
-            />
-            <datalist id="sipFundList"></datalist>
-          </div>
-        </div>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" required />
-          </div>
-          <div class="form-group">
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" required />
-          </div>
-          <div class="form-group">
-            <label for="sipAmount">Monthly Investment (₹):</label>
-            <input
-              type="number"
-              id="sipAmount"
-              placeholder="Enter amount"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="sipType">SIP Type:</label>
-            <select id="sipType">
-              <option value="regular">Regular SIP</option>
-              <option value="stepup">Step-Up SIP</option>
-            </select>
-          </div>
-          <div class="form-group" id="stepUpContainer" style="display: none;">
-            <label for="stepUpPercent">Step-Up Percentage (per year, optional):</label>
-            <input type="number" id="stepUpPercent" placeholder="e.g., 5" />
-          </div>
-          <button id="calcSIP" class="btn">Calculate SIP</button>
-          <div id="sipResult" class="result"></div>
-          <canvas id="sipChart" width="400" height="200" style="display: none;"></canvas>
-        </div>
-      </section>
-
-      <!-- SWP Calculator Section -->
-      <section id="swpSection" class="page-section">
-        <h2>SWP Calculator</h2>
-        <div class="fund-selector">
-          <div class="form-group">
-            <label for="swpFundHouseSelect">Select Mutual Fund House:</label>
-            <select id="swpFundHouseSelect">
-              <option value="All">All</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="swpFundNameInput">Select Mutual Fund:</label>
-            <input
-              type="text"
-              id="swpFundNameInput"
-              placeholder="Type mutual fund name"
-              list="swpFundList"
-            />
-            <datalist id="swpFundList"></datalist>
-          </div>
-        </div>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="swpStartDate">Start Date:</label>
-            <input type="date" id="swpStartDate" required />
-          </div>
-          <div class="form-group">
-            <label for="swpEndDate">End Date:</label>
-            <input type="date" id="swpEndDate" required />
-          </div>
-          <div class="form-group">
-            <label for="initialPortfolio">Initial Portfolio Value (₹):</label>
-            <input
-              type="number"
-              id="initialPortfolio"
-              placeholder="Enter initial value"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="withdrawalAmount">Monthly Withdrawal (₹):</label>
-            <input
-              type="number"
-              id="withdrawalAmount"
-              placeholder="Enter withdrawal amount"
-              required
-            />
-          </div>
-          <button id="calcSWP" class="btn">Calculate SWP</button>
-          <div id="swpResult" class="result"></div>
-          <canvas id="swpPieChart" style="display: none;"></canvas>
-        </div>
-      </section>
-
-      <!-- Lumpsum Calculator Section -->
-      <section id="lumpsumSection" class="page-section">
-        <h2>Lumpsum Calculator</h2>
-        <div class="fund-selector">
-          <div class="form-group">
-            <label for="lumpsumFundHouseSelect">Select Mutual Fund House:</label>
-            <select id="lumpsumFundHouseSelect">
-              <option value="All">All</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="lumpsumFundNameInput">Select Mutual Fund:</label>
-            <input
-              type="text"
-              id="lumpsumFundNameInput"
-              placeholder="Type mutual fund name"
-              list="lumpsumFundList"
-            />
-            <datalist id="lumpsumFundList"></datalist>
-          </div>
-        </div>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="lumpsumStartDate">Start Date:</label>
-            <input type="date" id="lumpsumStartDate" required />
-          </div>
-          <div class="form-group">
-            <label for="lumpsumEndDate">End Date:</label>
-            <input type="date" id="lumpsumEndDate" required />
-          </div>
-          <div class="form-group">
-            <label for="lumpsumAmount">Investment Amount (₹):</label>
-            <input
-              type="number"
-              id="lumpsumAmount"
-              placeholder="Enter lumpsum amount"
-              required
-            />
-          </div>
-          <button id="calcLumpsum" class="btn">Calculate Lumpsum</button>
-          <div id="lumpsumResult" class="result"></div>
-          <canvas id="lumpsumChart" width="400" height="200" style="display: none;"></canvas>
-        </div>
-      </section>
-
-      <!-- Goal Planner Section -->
-      <section id="goalSection" class="page-section">
-        <h2>Goal Planner</h2>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="targetAmount">Target Amount (₹):</label>
-            <input type="number" id="targetAmount" placeholder="Enter target amount" required />
-          </div>
-          <div class="form-group">
-            <label for="goalReturn">Expected Annual Return (%):</label>
-            <input type="number" id="goalReturn" placeholder="Enter expected return" step="0.1" required />
-          </div>
-          <div class="form-group">
-            <p>Select Option:</p>
-            <div id="goalOptionButtons">
-              <button type="button" class="goal-option-btn active" data-option="investment">Required Investment</button>
-              <button type="button" class="goal-option-btn" data-option="time">Time Period Required</button>
-            </div>
-          </div>
-          <div id="investmentInputs" class="goal-section">
+      <!-- Main Content -->
+      <main id="content">
+        <!-- Overview Section -->
+        <section id="overviewSection" class="page-section">
+          <h2>Overview</h2>
+          <div class="fund-selector">
             <div class="form-group">
-              <label for="goalYears">Time Period (Years):</label>
-              <input type="number" id="goalYears" placeholder="Enter years" required />
+              <label for="overviewFundHouseSelect">Select Mutual Fund House:</label>
+              <select id="overviewFundHouseSelect">
+                <option value="All">All</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="requiredLumpsum">Lumpsum Investment (₹):</label>
-              <input type="number" id="requiredLumpsum" placeholder="Enter lumpsum amount" required />
+              <label for="overviewFundNameInput">Mutual Fund Name:</label>
+              <input type="text" id="overviewFundNameInput" list="overviewFundList" placeholder="Enter Mutual Fund Name" />
+              <datalist id="overviewFundList">
+                <!-- Options populated dynamically by your script -->
+              </datalist>
+            </div>
+          </div>
+          <div class="overview-chart-container">
+            <canvas id="overviewChart" width="400" height="200"></canvas>
+          </div>
+          <div id="overviewInfo">
+            <!-- Mutual fund info will be displayed here -->
+          </div>
+        </section>
+
+        <!-- SIP Calculator Section -->
+        <section id="sipSection" class="page-section">
+          <h2>SIP Calculator</h2>
+          <div class="fund-selector">
+            <div class="form-group">
+              <label for="sipFundHouseSelect">Select Mutual Fund House:</label>
+              <select id="sipFundHouseSelect">
+                <option value="All">All</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="requiredSIP">Monthly SIP (₹):</label>
-              <input type="number" id="requiredSIP" placeholder="Enter monthly SIP" required />
+              <label for="sipFundNameInput">Select Mutual Fund:</label>
+              <input
+                type="text"
+                id="sipFundNameInput"
+                placeholder="Type mutual fund name"
+                list="sipFundList"
+              />
+              <datalist id="sipFundList"></datalist>
             </div>
           </div>
-          <div id="timeInputs" class="goal-section" style="display: none;">
+          <div class="calculator-content">
             <div class="form-group">
-              <label for="existingLumpsum">Lumpsum (₹):</label>
-              <input type="number" id="existingLumpsum" placeholder="Enter existing lumpsum" />
+              <label for="startDate">Start Date:</label>
+              <input type="date" id="startDate" required />
             </div>
             <div class="form-group">
-              <label for="existingSIP">Monthly SIP (₹):</label>
-              <input type="number" id="existingSIP" placeholder="Enter existing monthly SIP" />
+              <label for="endDate">End Date:</label>
+              <input type="date" id="endDate" required />
+            </div>
+            <div class="form-group">
+              <label for="sipAmount">Monthly Investment (₹):</label>
+              <input
+                type="number"
+                id="sipAmount"
+                placeholder="Enter amount"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="sipType">SIP Type:</label>
+              <select id="sipType">
+                <option value="regular">Regular SIP</option>
+                <option value="stepup">Step-Up SIP</option>
+              </select>
+            </div>
+            <div class="form-group" id="stepUpContainer" style="display: none;">
+              <label for="stepUpPercent">Step-Up Percentage (per year, optional):</label>
+              <input type="number" id="stepUpPercent" placeholder="e.g., 5" />
+            </div>
+            <button id="calcSIP" class="btn">Calculate SIP</button>
+            <div id="sipResult" class="result"></div>
+            <canvas id="sipChart" width="400" height="200" style="display: none;"></canvas>
+          </div>
+        </section>
+
+        <!-- SWP Calculator Section -->
+        <section id="swpSection" class="page-section">
+          <h2>SWP Calculator</h2>
+          <div class="fund-selector">
+            <div class="form-group">
+              <label for="swpFundHouseSelect">Select Mutual Fund House:</label>
+              <select id="swpFundHouseSelect">
+                <option value="All">All</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="swpFundNameInput">Select Mutual Fund:</label>
+              <input
+                type="text"
+                id="swpFundNameInput"
+                placeholder="Type mutual fund name"
+                list="swpFundList"
+              />
+              <datalist id="swpFundList"></datalist>
             </div>
           </div>
-          <button id="calcGoal" class="btn">Calculate Goal Based Planner</button>
-          <div id="goalResult" class="result"></div>
-        </div>
-      </section>
+          <div class="calculator-content">
+            <div class="form-group">
+              <label for="swpStartDate">Start Date:</label>
+              <input type="date" id="swpStartDate" required />
+            </div>
+            <div class="form-group">
+              <label for="swpEndDate">End Date:</label>
+              <input type="date" id="swpEndDate" required />
+            </div>
+            <div class="form-group">
+              <label for="initialPortfolio">Initial Portfolio Value (₹):</label>
+              <input
+                type="number"
+                id="initialPortfolio"
+                placeholder="Enter initial value"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="withdrawalAmount">Monthly Withdrawal (₹):</label>
+              <input
+                type="number"
+                id="withdrawalAmount"
+                placeholder="Enter withdrawal amount"
+                required
+              />
+            </div>
+            <button id="calcSWP" class="btn">Calculate SWP</button>
+            <div id="swpResult" class="result"></div>
+            <canvas id="swpPieChart" style="display: none;"></canvas>
+          </div>
+        </section>
 
-      <!-- Retirement Planner Section -->
-      <section id="retirementSection" class="page-section">
-        <h2>Retirement Planner</h2>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="currentAge">Current Age:</label>
-            <input type="number" id="currentAge" placeholder="Enter your current age" required />
-          </div>
-          <div class="form-group">
-            <label for="retirementAge">Retirement Age:</label>
-            <input type="number" id="retirementAge" placeholder="Enter desired retirement age" required />
-          </div>
-          <div class="form-group">
-            <label for="currentSavingsRet">Current Savings (₹):</label>
-            <input type="number" id="currentSavingsRet" placeholder="Enter current savings" required />
-          </div>
-          <div class="form-group">
-            <label for="monthlyContributionRet">Monthly Contribution (₹):</label>
-            <input type="number" id="monthlyContributionRet" placeholder="Enter monthly contribution" required />
-          </div>
-          <div class="form-group">
-            <label for="retStepUp">Step-Up % for Contribution (per year, optional):</label>
-            <input type="number" id="retStepUp" placeholder="e.g., 3" />
-          </div>
-          <div class="form-group">
-            <label for="retInflationRate">Inflation Rate (optional) (%):</label>
-            <input type="number" id="retInflationRate" placeholder="e.g., 5" step="0.1" />
-          </div>
-          <div class="form-group">
-            <label for="retAnnualReturn">Expected Annual Return (%):</label>
-            <input type="number" id="retAnnualReturn" placeholder="Enter expected annual return" step="0.1" required />
-          </div>
-          <button id="calcRetirement" class="btn">Calculate Retirement Corpus</button>
-          <div id="retirementResult" class="result"></div>
-        </div>
-      </section>
-
-      <!-- Education Planner Section -->
-      <section id="educationSection" class="page-section">
-        <h2>Children Education Planner</h2>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label for="childAge">Child's Current Age:</label>
-            <input type="number" id="childAge" placeholder="Enter child's current age" required />
-          </div>
-          <div class="form-group">
-            <label for="eduAge">Desired Education Age:</label>
-            <input type="number" id="eduAge" placeholder="Enter education age" required />
-          </div>
-          <div class="form-group">
-            <label for="currentCostEdu">Estimated Cost Today (₹):</label>
-            <input type="number" id="currentCostEdu" placeholder="Enter cost today" required />
-          </div>
-          <div class="form-group">
-            <label for="eduStepUp">Step-Up % for Contribution (per year, optional):</label>
-            <input type="number" id="eduStepUp" placeholder="e.g., 3" />
-          </div>
-          <div class="form-group">
-            <label for="eduInflationRate">Inflation Rate (optional) (%):</label>
-            <input type="number" id="eduInflationRate" placeholder="e.g., 5" step="0.1" />
-          </div>
-          <div class="form-group">
-            <label for="eduAnnualReturn">Expected Annual Return (%):</label>
-            <input type="number" id="eduAnnualReturn" placeholder="Enter expected annual return" step="0.1" required />
-          </div>
-          <div class="form-group">
-            <label for="currentSavingsEdu">Current Savings for Education (₹):</label>
-            <input type="number" id="currentSavingsEdu" placeholder="Enter current savings" required />
-          </div>
-          <div class="form-group">
-            <label for="monthlyContributionEdu">Monthly Contribution (₹):</label>
-            <input type="number" id="monthlyContributionEdu" placeholder="Enter monthly contribution" required />
-          </div>
-          <button id="calcEducation" class="btn">Calculate Education Corpus</button>
-          <div id="educationResult" class="result"></div>
-        </div>
-      </section>
-
-      <!-- Loan Calculator Section -->
-      <section id="loanSection" class="page-section">
-        <h2>Loan Calculator</h2>
-        <div class="calculator-content">
-          <div class="form-group">
-            <label>Select Mode:</label>
-            <div id="loanModeButtons">
-              <button type="button" class="loan-mode-btn active" data-mode="emi">EMI</button>
-              <button type="button" class="loan-mode-btn" data-mode="tenure">Tenure</button>
-              <button type="button" class="loan-mode-btn" data-mode="rate">Interest Rate</button>
+        <!-- Lumpsum Calculator Section -->
+        <section id="lumpsumSection" class="page-section">
+          <h2>Lumpsum Calculator</h2>
+          <div class="fund-selector">
+            <div class="form-group">
+              <label for="lumpsumFundHouseSelect">Select Mutual Fund House:</label>
+              <select id="lumpsumFundHouseSelect">
+                <option value="All">All</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="lumpsumFundNameInput">Select Mutual Fund:</label>
+              <input
+                type="text"
+                id="lumpsumFundNameInput"
+                placeholder="Type mutual fund name"
+                list="lumpsumFundList"
+              />
+              <datalist id="lumpsumFundList"></datalist>
             </div>
           </div>
-          <div class="form-group" id="loanAmountGroup">
-            <label for="loanAmount">Loan Amount (₹):</label>
-            <input type="number" id="loanAmount" placeholder="Enter loan amount" required />
+          <div class="calculator-content">
+            <div class="form-group">
+              <label for="lumpsumStartDate">Start Date:</label>
+              <input type="date" id="lumpsumStartDate" required />
+            </div>
+            <div class="form-group">
+              <label for="lumpsumEndDate">End Date:</label>
+              <input type="date" id="lumpsumEndDate" required />
+            </div>
+            <div class="form-group">
+              <label for="lumpsumAmount">Investment Amount (₹):</label>
+              <input
+                type="number"
+                id="lumpsumAmount"
+                placeholder="Enter lumpsum amount"
+                required
+              />
+            </div>
+            <button id="calcLumpsum" class="btn">Calculate Lumpsum</button>
+            <div id="lumpsumResult" class="result"></div>
+            <canvas id="lumpsumChart" width="400" height="200" style="display: none;"></canvas>
           </div>
-          <div class="form-group" id="loanInterestGroup">
-            <label for="loanInterest">Annual Interest Rate (%):</label>
-            <input type="number" id="loanInterest" placeholder="Enter interest rate" step="0.1" required />
+        </section>
+
+        <!-- Goal Planner Section -->
+        <section id="goalSection" class="page-section">
+          <h2>Goal Planner</h2>
+          <div class="calculator-content">
+            <div class="form-group">
+              <label for="targetAmount">Target Amount (₹):</label>
+              <input type="number" id="targetAmount" placeholder="Enter target amount" required />
+            </div>
+            <div class="form-group">
+              <label for="goalReturn">Expected Annual Return (%):</label>
+              <input type="number" id="goalReturn" placeholder="Enter expected return" step="0.1" required />
+            </div>
+            <div class="form-group">
+              <p>Select Option:</p>
+              <div id="goalOptionButtons">
+                <button type="button" class="goal-option-btn active" data-option="investment">Required Investment</button>
+                <button type="button" class="goal-option-btn" data-option="time">Time Period Required</button>
+              </div>
+            </div>
+            <div id="investmentInputs" class="goal-section">
+              <div class="form-group">
+                <label for="goalYears">Time Period (Years):</label>
+                <input type="number" id="goalYears" placeholder="Enter years" required />
+              </div>
+              <div class="form-group">
+                <label for="requiredLumpsum">Lumpsum Investment (₹):</label>
+                <input type="number" id="requiredLumpsum" placeholder="Enter lumpsum amount" required />
+              </div>
+              <div class="form-group">
+                <label for="requiredSIP">Monthly SIP (₹):</label>
+                <input type="number" id="requiredSIP" placeholder="Enter monthly SIP" required />
+              </div>
+            </div>
+            <div id="timeInputs" class="goal-section" style="display: none;">
+              <div class="form-group">
+                <label for="existingLumpsum">Lumpsum (₹):</label>
+                <input type="number" id="existingLumpsum" placeholder="Enter existing lumpsum" />
+              </div>
+              <div class="form-group">
+                <label for="existingSIP">Monthly SIP (₹):</label>
+                <input type="number" id="existingSIP" placeholder="Enter existing monthly SIP" />
+              </div>
+            </div>
+            <button id="calcGoal" class="btn">Calculate Goal Based Planner</button>
+            <div id="goalResult" class="result"></div>
           </div>
-          <div class="form-group" id="loanTenureGroup">
-            <label for="loanTenure">Loan Tenure (Years):</label>
-            <input type="number" id="loanTenure" placeholder="Enter tenure" required />
+        </section>
+
+        <!-- Retirement Planner Section -->
+        <section id="retirementSection" class="page-section">
+          <h2>Retirement Planner</h2>
+          <div class="calculator-content">
+            <div class="form-group">
+              <label for="currentAge">Current Age:</label>
+              <input type="number" id="currentAge" placeholder="Enter your current age" required />
+            </div>
+            <div class="form-group">
+              <label for="retirementAge">Retirement Age:</label>
+              <input type="number" id="retirementAge" placeholder="Enter desired retirement age" required />
+            </div>
+            <div class="form-group">
+              <label for="currentSavingsRet">Current Savings (₹):</label>
+              <input type="number" id="currentSavingsRet" placeholder="Enter current savings" required />
+            </div>
+            <div class="form-group">
+              <label for="monthlyContributionRet">Monthly Contribution (₹):</label>
+              <input type="number" id="monthlyContributionRet" placeholder="Enter monthly contribution" required />
+            </div>
+            <div class="form-group">
+              <label for="retStepUp">Step-Up % for Contribution (per year, optional):</label>
+              <input type="number" id="retStepUp" placeholder="e.g., 3" />
+            </div>
+            <div class="form-group">
+              <label for="retInflationRate">Inflation Rate (optional) (%):</label>
+              <input type="number" id="retInflationRate" placeholder="e.g., 5" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label for="retAnnualReturn">Expected Annual Return (%):</label>
+              <input type="number" id="retAnnualReturn" placeholder="Enter expected annual return" step="0.1" required />
+            </div>
+            <button id="calcRetirement" class="btn">Calculate Retirement Corpus</button>
+            <div id="retirementResult" class="result"></div>
           </div>
-          <div class="form-group" id="loanEMIGroup" style="display: none;">
-            <label for="loanEMI">Desired EMI (₹):</label>
-            <input type="number" id="loanEMI" placeholder="Enter EMI amount" />
+        </section>
+
+        <!-- Education Planner Section -->
+        <section id="educationSection" class="page-section">
+          <h2>Children Education Planner</h2>
+          <div class="calculator-content">
+            <div class="form-group">
+              <label for="childAge">Child's Current Age:</label>
+              <input type="number" id="childAge" placeholder="Enter child's current age" required />
+            </div>
+            <div class="form-group">
+              <label for="eduAge">Desired Education Age:</label>
+              <input type="number" id="eduAge" placeholder="Enter education age" required />
+            </div>
+            <div class="form-group">
+              <label for="currentCostEdu">Estimated Cost Today (₹):</label>
+              <input type="number" id="currentCostEdu" placeholder="Enter cost today" required />
+            </div>
+            <div class="form-group">
+              <label for="eduStepUp">Step-Up % for Contribution (per year, optional):</label>
+              <input type="number" id="eduStepUp" placeholder="e.g., 3" />
+            </div>
+            <div class="form-group">
+              <label for="eduInflationRate">Inflation Rate (optional) (%):</label>
+              <input type="number" id="eduInflationRate" placeholder="e.g., 5" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label for="eduAnnualReturn">Expected Annual Return (%):</label>
+              <input type="number" id="eduAnnualReturn" placeholder="Enter expected annual return" step="0.1" required />
+            </div>
+            <div class="form-group">
+              <label for="currentSavingsEdu">Current Savings for Education (₹):</label>
+              <input type="number" id="currentSavingsEdu" placeholder="Enter current savings" required />
+            </div>
+            <div class="form-group">
+              <label for="monthlyContributionEdu">Monthly Contribution (₹):</label>
+              <input type="number" id="monthlyContributionEdu" placeholder="Enter monthly contribution" required />
+            </div>
+            <button id="calcEducation" class="btn">Calculate Education Corpus</button>
+            <div id="educationResult" class="result"></div>
           </div>
-          <button id="calcLoan" class="btn">Calculate Loan</button>
-          <div id="loanResult" class="result"></div>
-          <canvas id="loanChart" width="400" height="200" style="display: none;"></canvas>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        <!-- Loan Calculator Section -->
+        <section id="loanSection" class="page-section">
+          <h2>Loan Calculator</h2>
+          <div class="calculator-content">
+            <div class="form-group">
+              <label>Select Mode:</label>
+              <div id="loanModeButtons">
+                <button type="button" class="loan-mode-btn active" data-mode="emi">EMI</button>
+                <button type="button" class="loan-mode-btn" data-mode="tenure">Tenure</button>
+                <button type="button" class="loan-mode-btn" data-mode="rate">Interest Rate</button>
+              </div>
+            </div>
+            <div class="form-group" id="loanAmountGroup">
+              <label for="loanAmount">Loan Amount (₹):</label>
+              <input type="number" id="loanAmount" placeholder="Enter loan amount" required />
+            </div>
+            <div class="form-group" id="loanInterestGroup">
+              <label for="loanInterest">Annual Interest Rate (%):</label>
+              <input type="number" id="loanInterest" placeholder="Enter interest rate" step="0.1" required />
+            </div>
+            <div class="form-group" id="loanTenureGroup">
+              <label for="loanTenure">Loan Tenure (Years):</label>
+              <input type="number" id="loanTenure" placeholder="Enter tenure" required />
+            </div>
+            <div class="form-group" id="loanEMIGroup" style="display: none;">
+              <label for="loanEMI">Desired EMI (₹):</label>
+              <input type="number" id="loanEMI" placeholder="Enter EMI amount" />
+            </div>
+            <button id="calcLoan" class="btn">Calculate Loan</button>
+            <div id="loanResult" class="result"></div>
+            <canvas id="loanChart" width="400" height="200" style="display: none;"></canvas>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <footer>
       <div class="container">
