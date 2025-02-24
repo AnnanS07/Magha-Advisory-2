@@ -343,3 +343,44 @@ footer {
   box-sizing: border-box;
   margin-right: 0;
 }
+
+/* Ensure proper display in mobile portrait orientation */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  /* Force the mobile navbar to display at the top */
+  #mobileNavbar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px; /* Adjust if necessary */
+    background-color: #333;
+    z-index: 10000;
+  }
+  
+  /* Hide the desktop sidebar completely */
+  #sidebar {
+    display: none !important;
+  }
+  
+  /* Adjust the main content so it starts below the navbar */
+  #content {
+    padding-top: 70px; /* Extra space to clear the navbar */
+    margin: 0;
+    width: 100%;
+  }
+}
+
+/* (Optional) In mobile landscape mode you may allow an alternative layout.
+   For example, if you'd like the sidebar layout in landscape, you can override:
+   
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  #mobileNavbar {
+    display: none !important;
+  }
+  #sidebar {
+    display: block !important;
+    /* Adjust sidebar styling for landscape if needed *
+  }
+}
+*/
