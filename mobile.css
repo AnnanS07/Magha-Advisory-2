@@ -152,4 +152,89 @@ For instance, you might show a sidebar.
     width: calc(100% - 250px);
   }
 }
-*/ 
+*/
+
+/* --- Mobile Version for Portrait Mode (Top Navbar with Icon & Label) --- */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  /* Base Reset for Mobile Version */
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Hide the desktop sidebar on mobile */
+  #sidebar {
+    display: none !important;
+  }
+
+  /* Mobile Top Navbar (Always shown on mobile devices in portrait mode) */
+  #mobileNavbar {
+    display: block !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Increased height to accommodate icon and label */
+    background-color: #000; /* Jet black */
+    z-index: 10000 !important;
+  }
+
+  /* Navbar inner container */
+  #mobileNavbar nav {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Navbar list, arranged horizontally */
+  #mobileNavbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* Navbar items styling - display icon and label vertically */
+  #mobileNavbar nav ul li {
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Icon styling */
+  #mobileNavbar nav ul li i {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* Label styling */
+  #mobileNavbar nav ul li .nav-label {
+    font-size: 12px;
+    margin-top: 2px;
+    line-height: 1;
+  }
+
+  /* Adjust main content so it doesn't hide behind the navbar */
+  #content {
+    margin: 0;
+    padding-top: 75px;  /* Slightly more than navbar height */
+    width: 100%;
+  }
+
+  /* Footer styling on mobile */
+  footer {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: #333;  /* Matching header/footer color scheme */
+    color: #fff;
+    text-align: center;
+  }
+} 
