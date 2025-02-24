@@ -174,14 +174,63 @@ footer {
 }
 
 @media (max-width: 480px) {
+  /* Transform the sidebar into a horizontal top navigation */
   #sidebar {
+    width: 100%;
     position: relative;
-    width: 100%;
-    min-height: auto;
+    top: 0;
+    left: 0;
+    height: 50px;
+    padding: 0;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
   }
-  #content {
-    margin-left: 0;
+  #sidebar ul {
+    display: flex;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #sidebar ul li {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  /* Optionally, if you prefer to show only icons: 
+     you can hide the text nodes (assuming you wrap them in a span in your HTML)
+     or reduce the font size further. For example:
+     
+     #sidebar ul li span { display: none; }
+  */
+  #content {
+    margin: 0;
+    /* Add top padding to leave space for the horizontal nav */
+    padding-top: 60px;
+    width: 100%;
+  }
+  
+  /* Override the fixed width of the custom autocomplete dropdown */
+  .custom-autocomplete-dropdown {
+    width: 100% !important;  /* changed from 1000px to 100% */
+    left: 0 !important;       /* Ensure it aligns properly on mobile */
+    box-sizing: border-box;
+  }
+  
+  /* Make all canvas elements responsive on mobile */
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Optionally, if you want to adjust the calculator-content canvas specifically: */
+  .calculator-content canvas {
+    max-height: none !important;
   }
 }
 
@@ -206,4 +255,38 @@ footer {
 /* Hover effect for suggestion items */
 .custom-autocomplete-dropdown div:hover {
   background: #f1f1f1;
+}
+
+/* Highlight for Goal Planner Option Buttons */
+#goalOptionButtons .goal-option-btn {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+#goalOptionButtons .goal-option-btn.active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* Highlight for Loan Calculator Mode Buttons */
+#loanModeButtons .loan-mode-btn {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+#loanModeButtons .loan-mode-btn.active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
 }

@@ -239,7 +239,6 @@
               <div id="goalOptionButtons">
                 <button type="button" class="goal-option-btn active" data-option="investment">Required Investment</button>
                 <button type="button" class="goal-option-btn" data-option="time">Time Period Required</button>
-                <button type="button" class="goal-option-btn" data-option="combination">Combination</button>
               </div>
             </div>
             <div id="investmentInputs" class="goal-section">
@@ -248,46 +247,22 @@
                 <input type="number" id="goalYears" placeholder="Enter years" required />
               </div>
               <div class="form-group">
-                <label for="investmentMode">Investment Mode:</label>
-                <select id="investmentMode">
-                  <option value="lumpsum">Lumpsum</option>
-                  <option value="sip">SIP</option>
-                </select>
+                <label for="requiredLumpsum">Lumpsum Investment (₹):</label>
+                <input type="number" id="requiredLumpsum" placeholder="Enter lumpsum amount" required />
               </div>
-              <div class="form-group" id="goalSipInputs" style="display: none;">
-                <label for="goalStepUpPercent">Step-Up Percentage (per year, optional):</label>
-                <input type="number" id="goalStepUpPercent" placeholder="e.g., 5" />
+              <div class="form-group">
+                <label for="requiredSIP">Monthly SIP (₹):</label>
+                <input type="number" id="requiredSIP" placeholder="Enter monthly SIP" required />
               </div>
             </div>
             <div id="timeInputs" class="goal-section" style="display: none;">
               <div class="form-group">
                 <label for="existingLumpsum">Lumpsum (₹):</label>
-                <input type="number" id="existingLumpsum" placeholder="Enter lumpsum" />
+                <input type="number" id="existingLumpsum" placeholder="Enter existing lumpsum" />
               </div>
               <div class="form-group">
                 <label for="existingSIP">Monthly SIP (₹):</label>
-                <input type="number" id="existingSIP" placeholder="Enter monthly SIP" />
-              </div>
-            </div>
-            <div id="combinationInputs" class="goal-section" style="display: none;">
-              <div class="form-group">
-                <label for="comboChoice">Which value are you providing?</label>
-                <select id="comboChoice">
-                  <option value="lumpsum">Lumpsum Provided</option>
-                  <option value="sip">Monthly SIP Provided</option>
-                </select>
-              </div>
-              <div class="form-group" id="comboLumpsum" style="display: none;">
-                <label for="givenLumpsum">Lumpsum Amount (₹):</label>
-                <input type="number" id="givenLumpsum" placeholder="Enter lumpsum" />
-              </div>
-              <div class="form-group" id="comboSIP" style="display: none;">
-                <label for="givenSIP">Monthly SIP (₹):</label>
-                <input type="number" id="givenSIP" placeholder="Enter monthly SIP" />
-              </div>
-              <div class="form-group">
-                <label for="comboYears">Time Period (Years):</label>
-                <input type="number" id="comboYears" placeholder="Enter years" required />
+                <input type="number" id="existingSIP" placeholder="Enter existing monthly SIP" />
               </div>
             </div>
             <button id="calcGoal" class="btn">Calculate Goal Based Planner</button>

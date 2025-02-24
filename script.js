@@ -687,43 +687,69 @@ document.getElementById("calcLumpsum").addEventListener("click", function () {
 // Goal Based Planner Calculator
 // ====================================
 document.getElementById("calcGoal").addEventListener("click", function () {
-  const goalOption = document.querySelector(".goal-option-btn.active").getAttribute("data-option");
   const targetAmount = parseFloat(document.getElementById("targetAmount").value);
+  // Expected annual return as a decimal (e.g., 8% becomes 0.08)
   const goalReturn = parseFloat(document.getElementById("goalReturn").value) / 100;
-  const years = parseFloat(document.getElementById("goalYears").value);
   let resultHTML = "<h3>Goal Based Planner Results:</h3>";
-  
-  if (goalOption === "investment") {
-    if (document.getElementById("investmentMode").value === "lumpsum") {
-      const requiredLumpsum = targetAmount / Math.pow(1 + goalReturn, years);
-      resultHTML += `<p>Required Lumpsum Investment: ${formatIndianCurrency(requiredLumpsum)}</p>`;
+  // We only support two modes now: "investment" and "time"
+  const selectedOption = document.querySelector(".goal-option-btn.active").getAttribute("data-option");
+
+  if (selectedOption === "investment") {
+    // ------------------------------
+    // Investment Mode: Required Investment Calculation using a combination
+    // ------------------------------
+    // The investor plans a mix of both a lumpsum and a monthly SIP.
+    // Expected HTML inputs: 
+    //    "goalYears"       -> Time period (years)
+    //    "requiredLumpsum" -> Desired one-time lumpsum investment (enter 0 if none)
+    //    "requiredSIP"     -> Desired monthly SIP investment (enter 0 if none)
+    const years = parseFloat(document.getElementById("goalYears").value);
+    const lumpsumInput = parseFloat(document.getElementById("requiredLumpsum").value) || 0;
+    const sipInput = parseFloat(document.getElementById("requiredSIP").value) || 0;
+
+    // Future value of the lumpsum part:
+    const lumpsumFuture = lumpsumInput * Math.pow(1 + goalReturn, years);
+    
+    // Future value of the SIP part using the annuity-due formula:
+    // r is the monthly rate; n is total number of months.
+    const n = years * 12;
+    const r = goalReturn / 12;
+    const sipFactor = r === 0 ? n : ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+    const sipFuture = sipInput * sipFactor;
+
+    const totalFutureValue = lumpsumFuture + sipFuture;
+
+    if (totalFutureValue >= targetAmount) {
+      resultHTML += `<p>The combination of a lumpsum investment of <strong>${formatIndianCurrency(lumpsumInput.toFixed(2))}</strong> and a monthly SIP of <strong>${formatIndianCurrency(sipInput.toFixed(2))}</strong> will grow to <strong>${formatIndianCurrency(totalFutureValue.toFixed(2))}</strong> in ${years} years, meeting your target of ${formatIndianCurrency(targetAmount.toFixed(2))}.</p>`;
     } else {
-      const n = years * 12;
-      const r = goalReturn / 12;
-      const factor = ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-      let requiredSIP = targetAmount / factor;
-      const stepUp = parseFloat(document.getElementById("goalStepUpPercent").value) || 0;
-      resultHTML += `<p>Required Monthly SIP (base value): ${formatIndianCurrency(requiredSIP)}</p>`;
-      if (stepUp > 0) {
-        resultHTML += `<p>Note: A step-up of ${stepUp}% per year is optional and may reduce the required base SIP.</p>`;
-      }
+      const shortfall = targetAmount - totalFutureValue;
+      resultHTML += `<p>Your planned combination results in a future value of <strong>${formatIndianCurrency(totalFutureValue.toFixed(2))}</strong> over ${years} years, which is short of your target by <strong>${formatIndianCurrency(shortfall.toFixed(2))}</strong>.<br>Please consider increasing either your lumpsum, your SIP, or both.</p>`;
     }
-  } else if (goalOption === "time") {
-    if (document.getElementById("investmentMode").value === "lumpsum") {
-      const lumpsumGiven = parseFloat(document.getElementById("existingLumpsum").value);
-      const yearsNeeded = Math.log(targetAmount / lumpsumGiven) / Math.log(1 + goalReturn);
-      resultHTML += `<p>Time Required (Lumpsum): ${yearsNeeded.toFixed(2)} years</p>`;
+  } else if (selectedOption === "time") {
+    // ------------------------------
+    // Time Mode: Calculate Time Required for a Given Combination
+    // ------------------------------
+    // Expected HTML inputs:
+    //    "existingLumpsum" -> Current one-time lumpsum investment
+    //    "existingSIP"     -> Current monthly SIP investment
+    const lumpsumGiven = parseFloat(document.getElementById("existingLumpsum").value) || 0;
+    const sipGiven = parseFloat(document.getElementById("existingSIP").value) || 0;
+    let t = 0; // Time in years
+    const r = goalReturn / 12; // monthly rate
+
+    while (t < 100) {
+      const lumpsumFuture = lumpsumGiven * Math.pow(1 + goalReturn, t);
+      const nMonths = Math.floor(t * 12);
+      const sipFuture = sipGiven * (r === 0 ? nMonths : ((Math.pow(1 + r, nMonths) - 1) / r) * (1 + r));
+      if (lumpsumFuture + sipFuture >= targetAmount) break;
+      t += 0.01; // Increment time (approximately every 3.65 days)
+    }
+
+    if (t >= 100) {
+      resultHTML += `<p>With your current investments, the target amount cannot be reached within 100 years.</p>`;
     } else {
-      const sipGiven = parseFloat(document.getElementById("existingSIP").value);
-      let n = 1;
-      const r = goalReturn / 12;
-      while (sipGiven * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) < targetAmount && n < 1000) {
-        n++;
-      }
-      resultHTML += `<p>Time Required (SIP): ${(n / 12).toFixed(2)} years</p>`;
+      resultHTML += `<p>Your current combination will reach your target in approximately <strong>${t.toFixed(2)}</strong> years.</p>`;
     }
-  } else if (goalOption === "combination") {
-    resultHTML += `<p>Combination mode calculations are not implemented.</p>`;
   }
   document.getElementById("goalResult").innerHTML = resultHTML;
 });
@@ -738,20 +764,11 @@ document.addEventListener("DOMContentLoaded", function() {
       if (option === "investment") {
         document.getElementById("investmentInputs").style.display = "block";
         document.getElementById("timeInputs").style.display = "none";
-        document.getElementById("combinationInputs").style.display = "none";
       } else if (option === "time") {
         document.getElementById("investmentInputs").style.display = "none";
         document.getElementById("timeInputs").style.display = "block";
-        document.getElementById("combinationInputs").style.display = "none";
-      } else if (option === "combination") {
-        document.getElementById("investmentInputs").style.display = "none";
-        document.getElementById("timeInputs").style.display = "none";
-        document.getElementById("combinationInputs").style.display = "block";
       }
     });
-  });
-  document.getElementById("investmentMode").addEventListener("change", function() {
-    document.getElementById("goalSipInputs").style.display = this.value === "sip" ? "block" : "none";
   });
 
   // Setup fund selectors for each section with mutual fund selection
@@ -885,24 +902,79 @@ document.getElementById("calcLoan").addEventListener("click", function() {
     return;
   }
   const loanMode = activeLoanButton.getAttribute("data-mode");
+  const loanAmount = parseFloat(document.getElementById("loanAmount").value);
+  if (loanAmount <= 0) {
+      alert("Please enter a valid loan amount.");
+      return;
+  }
   if (loanMode === "emi") {
-    const loanAmount = parseFloat(document.getElementById("loanAmount").value);
     const loanInterest = parseFloat(document.getElementById("loanInterest").value);
     const loanTenure = parseFloat(document.getElementById("loanTenure").value);
+    if (loanInterest <= 0 || loanTenure <= 0) {
+         alert("Please enter valid interest rate and tenure.");
+         return;
+    }
     const result = calculateLoanEMI(loanAmount, loanInterest, loanTenure);
     document.getElementById("loanResult").innerHTML =
       `<h3>Loan Calculator Results (EMI Mode):</h3>
-       <p>Monthly EMI: ${formatIndianCurrency(result.EMI)}</p>
-       <p>Total Interest Payable: ${formatIndianCurrency(result.totalInterest)}</p>
-       <p>Total Payment: ${formatIndianCurrency(result.totalPayment)}</p>`;
+       <p>Monthly EMI: ${formatIndianCurrency(result.EMI.toFixed(2))}</p>
+       <p>Total Interest Payable: ${formatIndianCurrency(result.totalInterest.toFixed(2))}</p>
+       <p>Total Payment: ${formatIndianCurrency(result.totalPayment.toFixed(2))}</p>`;
     simulateLoanEMI(loanAmount, loanInterest, loanTenure);
+    document.getElementById("loanChart").style.display = "block";
   } else if (loanMode === "tenure") {
+    // Tenure Mode: Given desired EMI, solve for number of months (n)
+    const loanInterest = parseFloat(document.getElementById("loanInterest").value);
+    const desiredEMI = parseFloat(document.getElementById("loanEMI").value);
+    if (loanInterest <= 0 || desiredEMI <= 0) {
+      alert("Please enter valid interest rate and desired EMI.");
+      return;
+    }
+    const r = loanInterest / 100 / 12;
+    const K = desiredEMI / (loanAmount * r);
+    if (K <= 1) {
+        document.getElementById("loanResult").innerHTML = `<h3>Loan Calculator Results (Tenure Mode):</h3><p>Desired EMI is too low to cover the interest.</p>`;
+        document.getElementById("loanChart").style.display = "none";
+        return;
+    }
+    const n = Math.log(K/(K-1)) / Math.log(1+r);
+    const years = n / 12;
+    const totalPayment = desiredEMI * n;
+    const totalInterest = totalPayment - loanAmount;
     document.getElementById("loanResult").innerHTML =
-      `<h3>Loan Calculator Results (Tenure Mode):</h3><p>Feature under development.</p>`;
+      `<h3>Loan Calculator Results (Tenure Mode):</h3>
+       <p>Calculated Tenure: ${years.toFixed(2)} years (${Math.round(n)} months)</p>
+       <p>Total Interest Payable: ${formatIndianCurrency(totalInterest.toFixed(2))}</p>
+       <p>Total Payment: ${formatIndianCurrency(totalPayment.toFixed(2))}</p>`;
     document.getElementById("loanChart").style.display = "none";
   } else if (loanMode === "rate") {
+    // Rate Mode: Given tenure and desired EMI, solve for the interest rate using bisection.
+    const loanTenure = parseFloat(document.getElementById("loanTenure").value);
+    const desiredEMI = parseFloat(document.getElementById("loanEMI").value);
+    if (loanTenure <= 0 || desiredEMI <= 0) {
+      alert("Please enter valid tenure and desired EMI.");
+      return;
+    }
+    const n = loanTenure * 12;
+    let low = 0.000001, high = 1, mid = 0;
+    for (let i = 0; i < 50; i++){
+      mid = (low + high) / 2;
+      const calcEMI = loanAmount * mid * Math.pow(1+mid, n) / (Math.pow(1+mid, n) - 1);
+      if (calcEMI > desiredEMI){
+         high = mid;
+      } else {
+         low = mid;
+      }
+    }
+    const monthlyRate = mid;
+    const annualRate = monthlyRate * 12 * 100;
+    const totalPayment = desiredEMI * n;
+    const totalInterest = totalPayment - loanAmount;
     document.getElementById("loanResult").innerHTML =
-      `<h3>Loan Calculator Results (Rate Mode):</h3><p>Feature under development.</p>`;
+      `<h3>Loan Calculator Results (Rate Mode):</h3>
+       <p>Calculated Annual Interest Rate: ${annualRate.toFixed(2)}%</p>
+       <p>Total Interest Payable: ${formatIndianCurrency(totalInterest.toFixed(2))}</p>
+       <p>Total Payment: ${formatIndianCurrency(totalPayment.toFixed(2))}</p>`;
     document.getElementById("loanChart").style.display = "none";
   }
 });
