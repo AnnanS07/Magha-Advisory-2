@@ -162,57 +162,69 @@ footer {
   flex-shrink: 0;
 }
 
-/* Responsive Design */
+/* ----------------
+   Mobile Phone Layout (Build New From Scratch)
+   ---------------- */
 @media (max-width: 768px) {
-  /* Hide the sidebar completely */
+
+  /* Hide the desktop sidebar */
   #sidebar {
     display: none;
   }
-  
-  /* Style the new topbar for mobile */
-  #topbar {
+
+  /* Mobile Navbar */
+  #mobileNavbar {
     display: block;
+    width: 100%;
     background-color: #333;
-    color: #fff;
-    padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 1000;
+    height: 55px; /* Accurate navbar height */
+    line-height: 55px;
   }
-  
-  /* Topbar navigation list */
-  #topbar ul {
-    display: flex;
-    justify-content: space-around;
+
+  #mobileNavbar nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
-  
-  /* Topbar navigation items: adjust icon size & style */
-  #topbar ul li {
-    color: #fff;
-    font-size: 20px;
+
+  #mobileNavbar nav ul li {
+    flex: 1;
+    text-align: center;
     cursor: pointer;
-    /* Optional: add a hover effect */
-    transition: color 0.3s;
+    color: #fff;
   }
-  
-  #topbar ul li:hover {
-    color: #ccc;
+
+  #mobileNavbar nav ul li i {
+    font-size: 22px;
+    display: block;
   }
-  
-  /* Move main content down to clear the topbar */
+
+  /* If you prefer to hide text labels on mobile, uncomment the next rule.
+     Otherwise, the labels will be shown below the icons. */
+  #mobileNavbar nav ul li .nav-label {
+    font-size: 10px;
+    display: none;
+  }
+
+  /* Adjust the main content to start below the mobile navbar */
   #content {
-    padding-top: 60px; /* Adjust this value to match topbar height */
+    margin-top: 55px;
+    margin-left: 0;
+    width: 100%;
   }
 }
 
-/* Hide the topbar on larger screens */
+/* Hide mobile navbar on desktop screens */
 @media (min-width: 769px) {
-  #topbar {
+  #mobileNavbar {
     display: none;
   }
 }
