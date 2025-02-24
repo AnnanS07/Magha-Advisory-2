@@ -1,0 +1,99 @@
+/* --- Base reset for the mobile version --- */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Hide the desktop sidebar entirely on mobile */
+#sidebar {
+  display: none !important;
+}
+
+/* --- Mobile Portrait Mode Styles --- */
+@media (orientation: portrait) {
+  /* The Mobile Topbar (navbar) */
+  #mobileNavbar {
+    display: block !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;  /* Exact navbar height */
+    background-color: #333;
+    z-index: 10000;  /* High z-index so it stays on top */
+  }
+  
+  /* Navigation container inside the mobile navbar */
+  #mobileNavbar nav {
+    height: 100%;
+    width: 100%;
+  }
+  
+  #mobileNavbar nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  #mobileNavbar nav ul li {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Push content down so it does not hide behind the topbar */
+  #content {
+    margin: 0;
+    padding-top: 65px;  /* Ensure this is at least the navbar height plus some extra spacing */
+    width: 100%;
+  }
+  
+  /* Also adapt footer so it fits within the mobile view */
+  footer {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* --- Mobile Landscape Mode Styles (Optional) --- */
+/*
+   If you prefer the sidebar in landscape mode, you can uncomment these rules.
+   They show the desktop sidebar and hide the mobile navbar.
+*/
+/*
+@media (orientation: landscape) {
+  #mobileNavbar {
+    display: none !important;
+  }
+  
+  #sidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    min-height: 100vh;
+    padding-top: 20px;
+    z-index: 100;
+  }
+  
+  #content {
+    margin-left: 250px;
+    padding-top: 20px;
+    width: calc(100% - 250px);
+  }
+  
+  footer {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+*/ 
