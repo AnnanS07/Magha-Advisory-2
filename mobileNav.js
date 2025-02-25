@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth <= 768) {
   const navbarItems = document.querySelectorAll("#mobileNavbar li");
   const calculatorToolsItem = document.querySelector("#mobileNavbar li[data-target='calculatorTools']");
   const mobileSubmenu = document.querySelector("#mobileSubmenu");
@@ -107,4 +107,5 @@ document.addEventListener("DOMContentLoaded", function () {
       mobileSubmenu.classList.remove("open");
     });
   });
+}
 });
