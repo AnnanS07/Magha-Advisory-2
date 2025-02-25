@@ -57,14 +57,14 @@ html, body {
     top: 75px; /* Below the header */
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1001;
   }
 
   /* Mobile Navbar Styling */
   #mobileNavbar {
     height: 50px;
     background-color: #000;
-    z-index: 1000;
+    z-index: 1001;
   }
   
   #mobileNavbar ul {

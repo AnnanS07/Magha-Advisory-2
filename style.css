@@ -461,6 +461,26 @@ h2 {
 
 /* --- Optional: Mobile Landscape Mode (Desktop Sidebar) --- */
 @media screen and (max-width: 768px) and (orientation: landscape) {
+  #desktopHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #333;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  #desktopHeader h1 {
+    font-size: 1.5em; /* Reduce font size for mobile */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  }
   /* Hide the mobile topbar */
   #mobileNavbar {
     display: none !important;
