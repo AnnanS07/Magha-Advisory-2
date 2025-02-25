@@ -26,16 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
         section.classList.remove("active");
       });
       
-      // Scroll to the section specified in data-target with proper offset
+      // Show the section corresponding to the clicked item
       const targetId = this.getAttribute("data-target");
       if (targetId) {
-        const section = document.getElementById(targetId);
-        if (section) {
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.classList.add("active");
+          
+          // Scroll to the section with proper offset
           const headerHeight = document.getElementById("desktopHeader").offsetHeight;
           const mobileNavbarHeight = document.getElementById("mobileNavbar").offsetHeight;
           const offset = headerHeight + mobileNavbarHeight;
           
-          const elementPosition = section.getBoundingClientRect().top;
+          const elementPosition = targetSection.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
           
           window.scrollTo({
@@ -84,6 +87,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
           targetSection.classList.add("active");
+          
+          // Scroll to the section with proper offset
+          const headerHeight = document.getElementById("desktopHeader").offsetHeight;
+          const mobileNavbarHeight = document.getElementById("mobileNavbar").offsetHeight;
+          const offset = headerHeight + mobileNavbarHeight;
+          
+          const elementPosition = targetSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       }
       
