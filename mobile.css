@@ -108,23 +108,22 @@ html, body {
 
 /* Mobile Submenu Styling */
 #mobileSubmenu {
-  display: none;
-  position: absolute;
-  top: 50px; /* Position below the navbar */
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed position so it overlays content */
+  top: 60px; /* Position below the navbar */
   left: 0;
   width: 100%;
   background-color: #444;
-  z-index: 999;
+  z-index: 1000; /* High z-index to appear above content */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  overflow-y: auto;
   max-height: 0;
-  overflow: hidden;
   transition: max-height 0.3s ease;
 }
 
 #mobileSubmenu.open {
   display: block;
-  max-height: 100vh; /* Allow full height when open */
-  overflow-y: auto;
+  max-height: 80vh; /* Allow scrolling if needed */
 }
 
 #mobileSubmenu ul {
@@ -159,4 +158,11 @@ html, body {
 #mobileSubmenu li.active {
   background-color: #666;
   border-left: 3px solid #FF6600;
+}
+
+/* Ensure mobile elements are only visible on mobile */
+@media only screen and (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
 }

@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       
-      // Optional: Close the submenu after selection on mobile
-      // mobileSubmenu.classList.remove("open");
+      // Close the submenu after selection on mobile
+      mobileSubmenu.classList.remove("open");
     });
   });
 });
