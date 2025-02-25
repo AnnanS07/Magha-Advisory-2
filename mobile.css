@@ -155,5 +155,9 @@ html, body {
 @media only screen and (min-width: 769px) {
   .mobile-only {
     display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
   }
 }

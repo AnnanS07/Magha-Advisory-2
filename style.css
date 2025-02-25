@@ -21,7 +21,7 @@ body {
 
 /* Main Container that wraps sidebar and content+header+footer */
 .main-container {
-  display: flex block;
+  display: flex;
   min-height: 100vh;
 }
 
@@ -601,4 +601,14 @@ textarea {
 #sidebar .submenu li.active {
   background-color: #444;
   border-left: 3px solid #FF6600;
+}
+
+@media only screen and (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+  }
 }
