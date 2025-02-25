@@ -16,48 +16,28 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Desktop Header (normal flow) */
-#desktopHeader {
-  width: 100%;
-  height: 55px;               /* Matches the features menu height */
-  background-color: #333;     /* Dark gray (same as footer) */
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-}
-
-#desktopHeader h1 {
-  margin: 0;
-  font-size: 18px;           /* Reduced font size to fit two lines */
-  line-height: 1;
-}
-
-#desktopHeader p {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1;
-}
-
-/* Main Container that wraps sidebar and main content */
+/* Main Container that wraps sidebar and content+header+footer */
 .main-container {
-  flex: 1;                    /* Grow to fill available vertical space */
+  flex: 1;
   display: flex;
+  min-height: 100vh;
 }
 
-/* Sidebar (unfixed, remains jet black) */
+/* Sidebar (full height) */
 #sidebar {
   width: 250px;
-  background-color: #000;     /* Jet black */
+  background-color: #333;
   color: #fff;
   padding: 20px 0;
-  /* Ensure the sidebar's background fills the available space */
-  min-height: calc(100vh - 55px - 55px);
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
 }
 
 #sidebar ul {
@@ -76,6 +56,55 @@ body {
   background-color: #444;
 }
 
+/* Style for direct menu items (About Us, Contact Us) to match Calculator/Tools */
+#sidebar ul li:not(.has-submenu) {
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure icons are aligned consistently */
+#sidebar ul li i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Content wrapper (contains header, main content, and footer) */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px; /* Same as sidebar width */
+  min-height: 100vh;
+}
+
+/* Desktop Header */
+#desktopHeader {
+  width: 100%;
+  height: 75px; /* Increased height */
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+#desktopHeader h1 {
+  margin: 0;
+  font-size: 24px; /* Larger font size */
+  font-weight: 700; /* Make it bolder */
+  line-height: 1.2;
+}
+
+#desktopHeader p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
 /* Main Content */
 #content {
   flex: 1;
@@ -83,11 +112,11 @@ body {
   background-color: #f7f7f7;
 }
 
-/* Footer (in document flow & sticky at bottom) */
+/* Footer (smaller) */
 footer {
   width: 100%;
-  height: 55px;               /* Matches header height */
-  background-color: #333;     /* Dark gray */
+  height: 40px; /* Reduced height */
+  background-color: #000;
   color: #fff;
   display: flex;
   align-items: center;
@@ -471,3 +500,103 @@ h2 {
   }
 }
 */
+
+/* Submenu Styling */
+#sidebar ul li.has-submenu {
+  cursor: default;
+}
+
+#sidebar ul li.has-submenu .menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+#sidebar ul li.has-submenu .menu-item:hover {
+  background-color: #444;
+}
+
+#sidebar ul li.has-submenu.active .menu-item {
+  background-color: #444;
+}
+
+#sidebar ul li.has-submenu .submenu-icon {
+  transition: transform 0.3s ease;
+}
+
+#sidebar ul li.has-submenu.open .submenu-icon {
+  transform: rotate(180deg);
+}
+
+#sidebar .submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: #111;
+}
+
+#sidebar li.has-submenu.open .submenu {
+  max-height: 1000px; /* Adjust if needed to accommodate all submenu items */
+}
+
+#sidebar .submenu li {
+  padding-left: 35px;
+}
+
+/* Push the Contact Us menu item to the bottom */
+#sidebar ul {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#sidebar li.contact-menu-item {
+  margin-top: auto;
+}
+
+/* Styling for the new content blocks */
+.content-block {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  margin: 30px 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.contact-item i {
+  margin-right: 15px;
+  color: #333;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.contact-form h3 {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Optional styling for the active submenu item */
+#sidebar .submenu li.active {
+  background-color: #444;
+  border-left: 3px solid #FF6600;
+}

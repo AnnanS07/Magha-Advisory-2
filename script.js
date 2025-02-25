@@ -342,7 +342,8 @@ function getSelectedFundIdFromSection(fundNameInputId, datalistId) {
 
 function updateFundHouseSelects(uniqueHouses) {
   // List of additional fund houses to be included
-  const additionalHouses = ["Motilal Oswal", "Quant", "HSBC", "Canera Robeco", "Parag Parekh", "PGIM", "Samco", "Sundaram", "Mirae Asset", "JM", "ITI", "Invesco"];
+  const additionalHouses = ["Motilal Oswal", "Quant", "HSBC", "Canera Robeco",
+     "Parag Parikh", "PGIM", "Samco", "Sundaram", "Mirae Asset", "JM", "ITI", "Invesco"];
   
   // Merge with the already unique houses and ensure uniqueness
   uniqueHouses = uniqueHouses.concat(additionalHouses);
@@ -409,7 +410,7 @@ function extractFundHouse(schemeName) {
   const commonFundHouses = [
     "HDFC", "ICICI", "SBI", "Axis", "Kotak", "Aditya Birla",
     "Nippon", "UTI", "DSP", "IDFC", "Tata", "L&T", "Motilal Oswal", 
-    "Quant", "HSBC", "Canera Robeco", "Parag Parekh", "PGIM", "Samco", 
+    "Quant", "HSBC", "Canera Robeco", "Parag Parikh", "PGIM", "Samco", 
     "Sundaram", "Mirae Asset", "JM", "ITI", "Invesco"
   ];
   for (let house of commonFundHouses) {
@@ -980,27 +981,78 @@ document.getElementById("calcLoan").addEventListener("click", function() {
 });
 
 // ====================================
-// Sidebar Navigation
+// Sidebar Navigation with Submenu Support
 // ====================================
 document.addEventListener("DOMContentLoaded", function() {
-  // Setup sidebar navigation
-  const menuItems = document.querySelectorAll("#sidebar ul li");
+  // Setup submenu toggling
+  const submenus = document.querySelectorAll("#sidebar ul li.has-submenu");
+  submenus.forEach(submenu => {
+    const menuItem = submenu.querySelector(".menu-item");
+    menuItem.addEventListener("click", function() {
+      submenu.classList.toggle("open");
+    });
+  });
+
+  // Setup sidebar navigation for direct links
+  const menuItems = document.querySelectorAll("#sidebar ul li:not(.has-submenu)");
   menuItems.forEach(item => {
     item.addEventListener("click", function() {
-      menuItems.forEach(i => i.classList.remove("active"));
+      // Remove active class from all menu items
+      document.querySelectorAll("#sidebar ul li").forEach(i => {
+        i.classList.remove("active");
+      });
+      
+      // Add active class to clicked item
       this.classList.add("active");
+      
+      // Get target section ID
       const target = this.getAttribute("data-target");
+      
+      // Hide all sections
       document.querySelectorAll(".page-section").forEach(section => {
         section.classList.remove("active");
       });
+      
+      // Show target section
       document.getElementById(target).classList.add("active");
     });
   });
-  // Set default active section
-  document.querySelector('#sidebar ul li[data-target="overviewSection"]').click();
 
-  // Populate global fund list from mfapi
-  populateFundList();
+  // Setup submenu item navigation
+  const submenuItems = document.querySelectorAll("#sidebar .submenu li");
+  submenuItems.forEach(item => {
+    item.addEventListener("click", function(e) {
+      e.stopPropagation(); // Prevent event bubbling to parent
+      
+      // Remove active class from all menu items
+      document.querySelectorAll("#sidebar ul li").forEach(i => {
+        i.classList.remove("active");
+      });
+      
+      // Add active class to parent submenu
+      this.closest(".has-submenu").classList.add("active");
+      
+      // Add active class to clicked submenu item
+      document.querySelectorAll("#sidebar .submenu li").forEach(i => {
+        i.classList.remove("active");
+      });
+      this.classList.add("active");
+      
+      // Get target section ID
+      const target = this.getAttribute("data-target");
+      
+      // Hide all sections
+      document.querySelectorAll(".page-section").forEach(section => {
+        section.classList.remove("active");
+      });
+      
+      // Show target section
+      document.getElementById(target).classList.add("active");
+    });
+  });
+
+  // Set default active section
+  document.querySelector('#sidebar ul li[data-target="aboutSection"]').click();
 });
 
 // ------------------------------------
