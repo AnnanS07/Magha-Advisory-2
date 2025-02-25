@@ -53,7 +53,7 @@ html, body {
   /* Show mobile navigation on small screens */
   .mobile-navigation {
     display: block;
-    position: fixed;
+    position: relative;
     top: 75px; /* Below the header */
     left: 0;
     right: 0;
