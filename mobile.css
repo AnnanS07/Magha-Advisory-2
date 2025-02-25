@@ -47,25 +47,25 @@ html, body {
 @media only screen and (max-width: 768px) {
   /* Fix the header at the top on mobile.
      (We're assuming you only want one header element — #desktopHeader) */
+  #desktopHeader,
+  /* If you also have a mobile header, include it: #mobileHeader, */
   #desktopHeader {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 70px; /* Set header height */
-    z-index: 1001; /* Higher than the navbar so header always appears on top */
+    z-index: 1001; /* Higher than other content so header always appears on top */
     background-color: #333; /* Header background color */
   }
 
-  /* Position the mobile navbar immediately below the header */
+  /* Make the mobile navbar relative so it flows in document order below the header */
   #mobileNavbar {
-    position: fixed;
-    top: 70px; /* Starts exactly below the header */
-    left: 0;
-    right: 0;
+    position: relative; /* Changed from fixed to relative */
+    /* Remove top, left, and right properties */
     height: 50px; /* Set navbar height */
-    z-index: 1000;
     background-color: #000; /* Navbar background color */
+    /* Remove z-index since it's no longer fixed */
   }
   
   /* Navbar list styling */
@@ -98,9 +98,10 @@ html, body {
     display: none;
   }
   
-  /* Push down the main container so content is not hidden behind header and navbar.
-     (70px header + 50px navbar = 120px total) */
+  /* Push down the main container so content is not hidden behind the fixed header.
+     Since the header is fixed (70px) and the navbar is now in normal flow (50px tall),
+     the main container should have a top margin equal to the header height (70px). */
   .main-container {
-    margin-top: 120px;
+    margin-top: 70px;
   }
 }
