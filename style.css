@@ -60,13 +60,16 @@ body {
 #sidebar ul li:not(.has-submenu) {
   display: flex;
   align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
 }
 
-/* Ensure icons are aligned consistently */
-#sidebar ul li i {
+/* Ensure icons in direct menu items are aligned consistently with Calculator/Tools */
+#sidebar ul li:not(.has-submenu) i {
   margin-right: 10px;
   width: 20px;
   text-align: center;
+  font-size: 16px;
 }
 
 /* Content wrapper (contains header, main content, and footer) */

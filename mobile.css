@@ -105,3 +105,58 @@ html, body {
     margin-top: 70px;
   }
 }
+
+/* Mobile Submenu Styling */
+#mobileSubmenu {
+  display: none;
+  position: absolute;
+  top: 50px; /* Position below the navbar */
+  left: 0;
+  width: 100%;
+  background-color: #444;
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+#mobileSubmenu.open {
+  display: block;
+  max-height: 100vh; /* Allow full height when open */
+  overflow-y: auto;
+}
+
+#mobileSubmenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#mobileSubmenu li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #555;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+#mobileSubmenu li:last-child {
+  border-bottom: none;
+}
+
+#mobileSubmenu li i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+#mobileSubmenu li:hover {
+  background-color: #555;
+}
+
+#mobileSubmenu li.active {
+  background-color: #666;
+  border-left: 3px solid #FF6600;
+}
