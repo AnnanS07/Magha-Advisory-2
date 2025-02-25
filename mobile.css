@@ -50,10 +50,10 @@ html, body {
     display: none;
   }
   
-  /* Mobile Horizontal Navbar Styling */
+  /* Mobile Horizontal Navbar Styling (moved below header) */
   #mobileNavbar {
     position: fixed;
-    top: 60px; /* Adjust this value based on your header height */
+    top: 100px; /* Placed below the header (assumed header height = 100px) */
     left: 0;
     right: 0;
     background-color: #000;
@@ -68,7 +68,7 @@ html, body {
     list-style: none;
   }
   
-  /* Adjusted for icon-only nav items */
+  /* Icon-only nav items */
   #mobileNavbar li {
     color: #fff;
     cursor: pointer;
@@ -81,8 +81,8 @@ html, body {
     border-radius: 4px;
   }
   
-  /* Adjust main container margin to account for fixed header and navbar */
+  /* Adjust main container margin to account for the fixed header and navbar */
   .main-container {
-    margin-top: 110px; /* header height + navbar height (adjust as needed) */
+    margin-top: 150px; /* header (100px) + navbar (approx 50px) */
   }
 }

@@ -9,12 +9,24 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add active class to the clicked item
       this.classList.add("active");
       
-      // Scroll to the section specified in data-target
+      // Scroll to the section specified in data-target with proper offset
       const targetId = this.getAttribute("data-target");
       if (targetId) {
         const section = document.getElementById(targetId);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Calculate the combined height of header and mobile navbar
+          const headerHeight = document.getElementById("desktopHeader").offsetHeight;
+          const mobileNavbarHeight = document.getElementById("mobileNavbar").offsetHeight;
+          const offset = headerHeight + mobileNavbarHeight;
+          
+          // Get the target's position, then adjust by the offset
+          const elementPosition = section.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       }
     });
