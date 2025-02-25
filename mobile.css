@@ -152,7 +152,7 @@ html, body {
 }
 
 /* Ensure mobile elements are only visible on mobile */
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 769px) {
   .mobile-only {
     display: none !important;
   }
