@@ -5,8 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", function () {
       // Remove active class from all navbar items
       navbarItems.forEach(i => i.classList.remove("active"));
+      
       // Add active class to the clicked item
       this.classList.add("active");
+      
       // Scroll to the section specified in data-target
       const targetId = this.getAttribute("data-target");
       if (targetId) {

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Ensure proper scaling on mobile devices -->
+    <!-- Responsive meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magha Advisory Dashboard</title>
     <!-- Google Fonts: Montserrat -->
@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="style.css" />
     <!-- LZ-String CDN for compression -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
+    <!-- Mobile-specific styles; used on screen widths up to 768px -->
     <link rel="stylesheet" media="only screen and (max-width: 768px)" href="mobile.css" />
   </head>
   <body>
-    <!-- Desktop Header -->
+    <!-- Desktop Header (common for all devices) -->
     <header id="desktopHeader">
       <div class="header-content">
         <h1>Magha Advisory Dashboard</h1>
@@ -39,20 +40,20 @@
     <!-- NEW Mobile Horizontal Navbar (visible only on mobile) -->
     <nav id="mobileNavbar" class="mobile-only">
       <ul>
-        <li data-target="overviewSection" class="active">Overview</li>
-        <li data-target="sipSection">SIP Calculator</li>
-        <li data-target="swpSection">SWP Calculator</li>
-        <li data-target="lumpsumSection">Lumpsum Calculator</li>
-        <li data-target="goalSection">Goal Planner</li>
-        <li data-target="retirementSection">Retirement Planner</li>
-        <li data-target="educationSection">Education Planner</li>
-        <li data-target="loanSection">Loan Calculator</li>
+        <li data-target="overviewSection" class="active" title="Overview"><i class="fas fa-home"></i></li>
+        <li data-target="sipSection" title="SIP Calculator"><i class="fas fa-chart-line"></i></li>
+        <li data-target="swpSection" title="SWP Calculator"><i class="fas fa-money-bill-wave"></i></li>
+        <li data-target="lumpsumSection" title="Lumpsum Calculator"><i class="fas fa-piggy-bank"></i></li>
+        <li data-target="goalSection" title="Goal Planner"><i class="fas fa-bullseye"></i></li>
+        <li data-target="retirementSection" title="Retirement Planner"><i class="fas fa-umbrella-beach"></i></li>
+        <li data-target="educationSection" title="Education Planner"><i class="fas fa-user-graduate"></i></li>
+        <li data-target="loanSection" title="Loan Calculator"><i class="fas fa-hand-holding-usd"></i></li>
       </ul>
     </nav>
 
     <!-- Main Container for Sidebar and Content -->
     <div class="main-container">
-      <!-- Sidebar -->
+      <!-- Desktop Sidebar (remains for desktop; hidden on mobile via mobile.css) -->
       <nav id="sidebar">
         <ul>
           <li data-target="overviewSection"><i class="fas fa-home"></i> Overview</li>
@@ -418,6 +419,7 @@
       </div>
     </footer>
 
+    <!-- Global JavaScript and Mobile Navbar functionality -->
     <script src="script.js"></script>
     <script src="mobileNav.js"></script>
   </body>
