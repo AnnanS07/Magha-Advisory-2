@@ -26,12 +26,22 @@ document.addEventListener("DOMContentLoaded", function () {
         section.classList.remove("active");
       });
       
-      // Show the section corresponding to the clicked item
+      // Scroll to the section specified in data-target with proper offset
       const targetId = this.getAttribute("data-target");
       if (targetId) {
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.classList.add("active");
+        const section = document.getElementById(targetId);
+        if (section) {
+          const headerHeight = document.getElementById("desktopHeader").offsetHeight;
+          const mobileNavbarHeight = document.getElementById("mobileNavbar").offsetHeight;
+          const offset = headerHeight + mobileNavbarHeight;
+          
+          const elementPosition = section.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       }
     });

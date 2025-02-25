@@ -44,31 +44,29 @@ html, body {
   box-sizing: border-box !important;
 }
 
+/* Mobile Navigation Container */
+.mobile-navigation {
+  display: none; /* Hidden by default */
+}
+
 @media only screen and (max-width: 768px) {
-  /* Fixed header remains at the top */
-  #desktopHeader {
-    position: relative;
-    top: 0;
+  /* Show mobile navigation on small screens */
+  .mobile-navigation {
+    display: block;
+    position: fixed;
+    top: 75px; /* Below the header */
     left: 0;
     right: 0;
-    height: 70px; /* Set header height */
-    background-color: #333; /* Header background color */
-    z-index: 1001; /* Ensures the header is always on top */
+    z-index: 1000;
   }
-  
-  /* Make the mobile navbar scroll normally (relative positioning) */
+
+  /* Mobile Navbar Styling */
   #mobileNavbar {
-    position: relative !important; /* Remove fixed positioning */
-    top: auto !important;          /* Remove any top offset */
-    left: auto !important;
-    right: auto !important;
-    margin-top: 10px;              /* Add a bit of space below the header */
-    height: 50px;                  /* Set navbar height */
-    background-color: #000;        /* Navbar background color */
-    z-index: auto;                 /* No z-index needed now */
+    height: 50px;
+    background-color: #000;
+    z-index: 1000;
   }
   
-  /* Navbar list styling */
   #mobileNavbar ul {
     display: flex;
     justify-content: space-around;
@@ -79,7 +77,6 @@ html, body {
     height: 100%;
   }
   
-  /* Navbar icon/item styling */
   #mobileNavbar li {
     color: #fff;
     font-size: 24px;
@@ -87,81 +84,75 @@ html, body {
     cursor: pointer;
   }
   
-  /* Active navbar item styling */
   #mobileNavbar li.active {
     background-color: #444;
     border-radius: 4px;
   }
   
-  /* Hide the desktop sidebar on mobile */
+  /* Mobile Submenu Styling */
+  #mobileSubmenu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #444;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  #mobileSubmenu.open {
+    display: block;
+  }
+  
+  #mobileSubmenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #mobileSubmenu li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #555;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #mobileSubmenu li:last-child {
+    border-bottom: none;
+  }
+  
+  #mobileSubmenu li i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  #mobileSubmenu li:hover {
+    background-color: #555;
+  }
+  
+  #mobileSubmenu li.active {
+    background-color: #666;
+    border-left: 3px solid #FF6600;
+  }
+  
+  /* Hide desktop sidebar on mobile */
   #sidebar {
     display: none;
   }
   
-  /* Adjust main container margin so content isn't hidden behind
-     the fixed header. Since the header is fixed (70px tall), we set this margin
-     to 70px. The navbar is now relative and will appear in the flow below the header. */
-  .main-container {
-    margin-top: 70px;
+  /* Adjust content wrapper for mobile */
+  .content-wrapper {
+    margin-left: 0 !important;
+    margin-top: 125px; /* header (75px) + navbar (50px) */
   }
 }
 
-/* Mobile Submenu Styling */
-#mobileSubmenu {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed position so it overlays content */
-  top: 60px; /* Position below the navbar */
-  left: 0;
-  width: 100%;
-  background-color: #444;
-  z-index: 1000; /* High z-index to appear above content */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  overflow-y: auto;
-  max-height: 0;
-  transition: max-height 0.3s ease;
-}
-
-#mobileSubmenu.open {
-  display: block;
-  max-height: 80vh; /* Allow scrolling if needed */
-}
-
-#mobileSubmenu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#mobileSubmenu li {
-  padding: 15px 20px;
-  border-bottom: 1px solid #555;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  cursor: pointer;
-}
-
-#mobileSubmenu li:last-child {
-  border-bottom: none;
-}
-
-#mobileSubmenu li i {
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-}
-
-#mobileSubmenu li:hover {
-  background-color: #555;
-}
-
-#mobileSubmenu li.active {
-  background-color: #666;
-  border-left: 3px solid #FF6600;
-}
-
 /* Ensure mobile elements are only visible on mobile */
-@media only screen and (min-width: 769px) {
+@media only screen and (max-width: 768px) {
   .mobile-only {
     display: none !important;
   }
