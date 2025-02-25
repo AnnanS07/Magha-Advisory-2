@@ -45,27 +45,27 @@ html, body {
 }
 
 @media only screen and (max-width: 768px) {
-  /* Fix the header at the top on mobile.
-     (We're assuming you only want one header element — #desktopHeader) */
-  #desktopHeader,
-  /* If you also have a mobile header, include it: #mobileHeader, */
+  /* Fixed header remains at the top */
   #desktopHeader {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 70px; /* Set header height */
-    z-index: 1001; /* Higher than other content so header always appears on top */
     background-color: #333; /* Header background color */
+    z-index: 1001; /* Ensures the header is always on top */
   }
-
-  /* Make the mobile navbar relative so it flows in document order below the header */
+  
+  /* Make the mobile navbar scroll normally (relative positioning) */
   #mobileNavbar {
-    position: relative; /* Changed from fixed to relative */
-    /* Remove top, left, and right properties */
-    height: 50px; /* Set navbar height */
-    background-color: #000; /* Navbar background color */
-    /* Remove z-index since it's no longer fixed */
+    position: relative !important; /* Remove fixed positioning */
+    top: auto !important;          /* Remove any top offset */
+    left: auto !important;
+    right: auto !important;
+    margin-top: 10px;              /* Add a bit of space below the header */
+    height: 50px;                  /* Set navbar height */
+    background-color: #000;        /* Navbar background color */
+    z-index: auto;                 /* No z-index needed now */
   }
   
   /* Navbar list styling */
@@ -98,9 +98,9 @@ html, body {
     display: none;
   }
   
-  /* Push down the main container so content is not hidden behind the fixed header.
-     Since the header is fixed (70px) and the navbar is now in normal flow (50px tall),
-     the main container should have a top margin equal to the header height (70px). */
+  /* Adjust main container margin so content isn't hidden behind
+     the fixed header. Since the header is fixed (70px tall), we set this margin
+     to 70px. The navbar is now relative and will appear in the flow below the header. */
   .main-container {
     margin-top: 70px;
   }
