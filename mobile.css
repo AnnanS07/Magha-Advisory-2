@@ -43,3 +43,44 @@ html, body {
   padding: 10px !important;
   box-sizing: border-box !important;
 }
+
+@media only screen and (max-width: 768px) {
+  /* Hide the desktop sidebar on mobile */
+  #sidebar {
+    display: none;
+  }
+  
+  /* Mobile Horizontal Navbar Styling */
+  #mobileNavbar {
+    position: fixed;
+    top: 60px; /* Adjust this value based on your header height */
+    left: 0;
+    right: 0;
+    background-color: #000;
+    z-index: 1000;
+  }
+  
+  #mobileNavbar ul {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+  
+  #mobileNavbar li {
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  
+  #mobileNavbar li.active {
+    background-color: #444;
+    border-radius: 4px;
+  }
+  
+  /* Adjust main container margin to account for the fixed header and navbar */
+  .main-container {
+    margin-top: 110px; /* header height + navbar height (adjust as needed) */
+  }
+}
