@@ -4,7 +4,7 @@ html, body {
   padding: 0;
 }
 
-/* Scoped mobile styles (overriding any desktop rules using the .mobile class and !important) */
+/* Scoped mobile styles using the .mobile class */
 
 /* Mobile Header */
 .mobile #mobileHeader {
@@ -12,11 +12,11 @@ html, body {
   color: #fff !important;
   text-align: center !important;
   padding: 20px !important;
-  position: relative !important; /* Force normal flow */
-  z-index: 100 !important;        /* Ensure header is on top */
+  position: relative !important;
+  z-index: 100 !important;
   min-height: 70px !important;
   box-sizing: border-box !important;
-  margin-bottom: 10px !important; /* Space between header and navbar */
+  margin-bottom: 10px !important;
 }
 
 .mobile #mobileHeader h1 {
@@ -29,62 +29,13 @@ html, body {
   font-size: 14px !important;
 }
 
-/* Navbar (Horizontal, below header) */
-.mobile #navbar {
-  background-color: #000 !important;
-  width: 100% !important;
-  overflow-x: auto !important;       /* Allow horizontal scrolling */
-  white-space: nowrap !important;      /* Keep items on one line */
-  position: relative !important;       /* Ensure normal document flow */
-  z-index: 50 !important;              /* Lower than header */
-  padding: 10px 0 !important;
-  box-sizing: border-box !important;
-  margin-top: 0 !important;
-}
-
-.mobile #navbar ul {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-}
-
-.mobile #navbar li {
-  padding: 10px 15px !important;
-  color: #fff !important;
-  cursor: pointer !important;
-  flex: 0 0 auto !important;
-  text-align: center !important;
-}
-
-.mobile #navbar li i {
-  font-size: 20px !important;
-  display: block !important;
-}
-
-.mobile #navbar li span {
-  font-size: 12px !important;
-  margin-top: 2px !important;
-  display: block !important;
-}
-
-.mobile #navbar li.active {
-  background-color: #444 !important;
-  border-radius: 4px !important;
-}
-
-/* Main Content */
+/* Main Content Styling */
 .mobile main {
   padding: 15px !important;
-  margin-top: 0 !important;
   box-sizing: border-box !important;
 }
 
-main section {
-  margin-bottom: 20px;
-}
-
-/* Footer */
+/* Footer Styling */
 .mobile footer {
   background-color: #333 !important;
   color: #fff !important;
