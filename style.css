@@ -21,8 +21,7 @@ body {
 
 /* Main Container that wraps sidebar and content+header+footer */
 .main-container {
-  flex: 1;
-  display: flex;
+  display: flex block;
   min-height: 100vh;
 }
 
@@ -78,13 +77,12 @@ body {
   display: flex;
   flex-direction: column;
   margin-left: 250px; /* Same as sidebar width */
-  min-height: 100vh;
 }
 
 /* Desktop Header */
 #desktopHeader {
   width: 100%;
-  height: 75px; /* Increased height */
+  height: 75px;
   background-color: #000;
   color: #fff;
   display: flex;
@@ -119,7 +117,7 @@ body {
 /* Footer (smaller) */
 footer {
   width: 100%;
-  height: 40px; /* Reduced height */
+  height: 40px;
   background-color: #000;
   color: #fff;
   display: flex;
