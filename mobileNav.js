@@ -14,12 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (targetId) {
         const section = document.getElementById(targetId);
         if (section) {
-          // Calculate the combined height of header and mobile navbar
           const headerHeight = document.getElementById("desktopHeader").offsetHeight;
           const mobileNavbarHeight = document.getElementById("mobileNavbar").offsetHeight;
           const offset = headerHeight + mobileNavbarHeight;
           
-          // Get the target's position, then adjust by the offset
           const elementPosition = section.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
           
