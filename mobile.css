@@ -47,7 +47,7 @@ html, body {
 @media only screen and (max-width: 768px) {
   /* Fixed header remains at the top */
   #desktopHeader {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
