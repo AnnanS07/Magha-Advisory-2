@@ -629,3 +629,15 @@ textarea {
     top: -9999px !important;
   }
 }
+
+/* iPad specific adjustments */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  #sidebar {
+    height: calc(100vh - 75px - 40px); /* Viewport height minus header and footer */
+    top: 75px; /* Below the header */
+  }
+  
+  #sidebar li.contact-menu-item {
+    margin-bottom: 20px; /* Add some space at the bottom */
+  }
+}
