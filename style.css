@@ -238,8 +238,8 @@ h2 {
    Mobile Phone Layout (New Template)
    ---------------- */
 @media screen and (max-width: 768px) {
-  #desktopHeader {
-    display: 100%;
+  #mobileHeader {
+    display: block !important;
   }
   /* Hide the desktop sidebar */
   #sidebar {
@@ -458,6 +458,10 @@ h2 {
     font-size: 20px;
     text-align: center;
     cursor: pointer;
+  }
+
+  #mobileHeader {
+    display: block !important;
   }
   
   /* Ensure the main content appears below the fixed navbar */
