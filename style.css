@@ -81,6 +81,7 @@ body {
 }
 
 /* Desktop Header */
+@media screen and (min-width: 769px) {
 #desktopHeader {
   width: calc(100% - 250px);
   height: 75px;
@@ -97,6 +98,7 @@ body {
   left: 250px; /* Same as sidebar width */
   right: 0;
   z-index: 1000;
+}
 }
 
 #desktopHeader h1 {
