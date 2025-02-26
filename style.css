@@ -253,7 +253,7 @@ h2 {
     padding: 0 20px;
     position: fixed;
     top: 0;
-    left: 250px; /* Same as sidebar width */
+    left: 0; /* Same as sidebar width */
     right: 0;
     z-index: 1000;
   }
