@@ -31,7 +31,7 @@ body {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   position: fixed;
   left: 0;
   top: 0;
