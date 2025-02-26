@@ -635,6 +635,7 @@ textarea {
   #sidebar {
     height: calc(100vh - 75px - 40px); /* Viewport height minus header and footer */
     top: 75px; /* Below the header */
+    overflow-y: auto; /* Ensure scrolling if content exceeds height */
   }
   
   #sidebar li.contact-menu-item {
