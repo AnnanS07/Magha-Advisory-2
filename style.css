@@ -639,18 +639,29 @@ textarea {
     overflow-y: auto;
     padding-bottom: 20px;
   }
+  
   #desktopHeader {
-    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Same as sidebar width */
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
   }
+  
   .content-wrapper {
     margin-left: 180px;
-    margin-top: 75px;
+    margin-top: 75px; /* Same as header height */
   }
   
   #sidebar li.contact-menu-item {
     margin-bottom: 20px; /* Add some space at the bottom */
   }
+  
   #sidebar ul li {
     padding: 10px 15px;
     font-size: 14px;
