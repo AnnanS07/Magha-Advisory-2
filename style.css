@@ -651,7 +651,7 @@ textarea {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: calc(100% - 180px); /* Header width minus sidebar width */
+    width: 100%; /* Header width minus sidebar width */
   }
   
   .content-wrapper {
