@@ -640,7 +640,7 @@ textarea {
     padding-bottom: 20px;
   }
   
-  #desktopHeader {
+  header {
     position: fixed;
     top: 0;
     left: 180px; /* Same as sidebar width */
@@ -654,12 +654,12 @@ textarea {
     width: 100%; /* Header width minus sidebar width */
   }
 
-  #desktopHeader h1 {
+  header h1 {
     text-align: center;
     margin: 0 auto;
   }
 
-  #desktopHeader p {
+  header p {
     text-align: center;
     margin: 0 auto;
   }
