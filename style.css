@@ -643,7 +643,7 @@ textarea {
   #desktopHeader {
     position: fixed;
     top: 0;
-    left: 250px; /* Same as sidebar width */
+    left: 180px; /* Same as sidebar width */
     right: 0;
     z-index: 1000;
     display: flex;
@@ -651,6 +651,7 @@ textarea {
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: calc(100% - 180px); /* Header width minus sidebar width */
   }
   
   .content-wrapper {
