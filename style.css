@@ -251,7 +251,7 @@ h2 {
     justify-content: center;
     text-align: center;
     padding: 0 20px;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0; /* Same as sidebar width */
     right: 0;
