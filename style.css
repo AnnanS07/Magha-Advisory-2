@@ -653,6 +653,10 @@ textarea {
     text-align: center;
     width: 100%; /* Header width minus sidebar width */
   }
+
+  #desktopHeader .header-text {
+    margin: 0 auto;
+  }
   
   .content-wrapper {
     margin-left: 180px;
