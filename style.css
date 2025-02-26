@@ -31,7 +31,7 @@ body {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   position: fixed;
   left: 0;
   top: 0;
@@ -634,10 +634,10 @@ textarea {
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   #sidebar {
     width: 180px; /* Reduced width for iPad screens */
-    height: calc(100vh - 75px - 40px); /* Viewport height minus header and footer */
+    height: calc(100dvh - 75px - 40px); /* Use dynamic viewport height */
     top: 75px; /* Below the header */
     overflow-y: auto;
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
   }
   .content-wrapper {
     margin-left: 180px;
