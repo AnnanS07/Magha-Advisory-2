@@ -240,9 +240,6 @@ h2 {
    Mobile Phone Layout (New Template)
    ---------------- */
 @media screen and (max-width: 768px) {
-  #mobileHeader {
-    display: block !important;
-  }
   /* Hide the desktop sidebar */
   #sidebar {
     display: none !important;
