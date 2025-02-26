@@ -31,7 +31,7 @@ body {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
-  min-height: 100dvh;
+  min-height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
@@ -641,6 +641,7 @@ textarea {
   }
   .content-wrapper {
     margin-left: 180px;
+    margin-top: 75px;
   }
   
   #sidebar li.contact-menu-item {
