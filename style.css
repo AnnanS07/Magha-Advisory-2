@@ -82,7 +82,7 @@ body {
 
 /* Desktop Header */
 #desktopHeader {
-  width: 100%;
+  width: calc(100% - 250px);
   height: 75px;
   background-color: #000;
   color: #fff;
