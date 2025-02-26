@@ -639,6 +639,13 @@ textarea {
     overflow-y: auto;
     padding-bottom: 20px;
   }
+  #desktopHeader {
+    position: fixed;
+    top: 0;
+    left: 180px; /* Same as sidebar width */
+    right: 0;
+    z-index: 1000;
+  }
   .content-wrapper {
     margin-left: 180px;
     margin-top: 75px;
