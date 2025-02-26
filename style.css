@@ -636,7 +636,8 @@ textarea {
     width: 180px; /* Reduced width for iPad screens */
     height: calc(100vh - 75px - 40px); /* Viewport height minus header and footer */
     top: 75px; /* Below the header */
-    overflow-y: auto; /* Ensure scrolling if content exceeds height */
+    overflow-y: auto;
+    padding-bottom: 20px; 
   }
   .content-wrapper {
     margin-left: 180px;
