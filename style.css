@@ -240,6 +240,23 @@ h2 {
    Mobile Phone Layout (New Template)
    ---------------- */
 @media screen and (max-width: 768px) {
+  #desktopHeader {
+    width: 100%;
+    height: 75px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Same as sidebar width */
+    right: 0;
+    z-index: 1000;
+  }
   /* Hide the desktop sidebar */
   #sidebar {
     display: none !important;
