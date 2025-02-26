@@ -656,10 +656,12 @@ textarea {
 
   #desktopHeader h1 {
     text-align: center;
+    margin: 0 auto;
   }
 
   #desktopHeader p {
     text-align: center;
+    margin: 0 auto;
   }
   
   
