@@ -641,7 +641,6 @@ textarea {
   }
   
   #desktopHeader {
-    max-width: 800px;
     position: fixed;
     top: 0;
     left: 180px; /* Same as sidebar width */
@@ -652,18 +651,8 @@ textarea {
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: calc(100% - 180px); /* Header width minus sidebar width */
   }
-
-  #desktopHeader h1 {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  #desktopHeader p {
-    text-align: center;
-    margin: 0 auto;
-  }
-  
   
   .content-wrapper {
     margin-left: 180px;
