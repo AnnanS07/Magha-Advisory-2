@@ -654,9 +654,14 @@ textarea {
     width: 100%; /* Header width minus sidebar width */
   }
 
-  #desktopHeader .header-text {
-    margin: 0 auto;
+  #desktopHeader h1 {
+    text-align: center;
   }
+
+  #desktopHeader p {
+    text-align: center;
+  }
+  
   
   .content-wrapper {
     margin-left: 180px;
