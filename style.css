@@ -461,7 +461,7 @@ h2 {
   }
 
   #mobileHeader {
-    display: block !important;
+    width: 100%;
   }
   
   /* Ensure the main content appears below the fixed navbar */
