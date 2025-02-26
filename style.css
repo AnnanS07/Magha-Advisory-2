@@ -640,11 +640,7 @@ textarea {
     padding-bottom: 20px;
   }
   #desktopHeader {
-    position: fixed;
-    top: 0;
-    left: 180px; /* Same as sidebar width */
-    right: 0;
-    z-index: 1000;
+    text-align: center;
   }
   .content-wrapper {
     margin-left: 180px;
